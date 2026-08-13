@@ -10,14 +10,16 @@ yaz720 的 Claude Code **技能总库**——所有自建技能的源头,也是�
 claude-skills/
 ├─ dist/                     # 打包产物(.skill),供下载一键装
 └─ skills/
-   └─ skill-forge/           # 锻技坊:造技能的技能(造→测→发→回收 闭环)
+   ├─ skill-forge/           # 锻技坊:造技能的技能(造→测→发→回收 闭环)
+   └─ doctor-finder/         # 医疗从业者查找(开发中 🚧)
 ```
 
 ## 技能一览
 
-| 技能 | 中文名 | 一句话 |
-|---|---|---|
-| [skill-forge](skills/skill-forge/) | 锻技坊 | 在官方 skill-creator 之上,补齐脚手架 / 预检 / 评测调优 / git 发布 / 失败回收,把造技能串成闭环 |
+| 技能 | 中文名 | 一句话 | 状态 |
+|---|---|---|---|
+| [skill-forge](skills/skill-forge/) | 锻技坊 | 在官方 skill-creator 之上,补齐脚手架 / 预检 / 评测调优 / git 发布 / 失败回收,把造技能串成闭环 | ✅ |
+| [doctor-finder](skills/doctor-finder/) | 医疗从业者查找 | 从"我有个健康问题"到"找到合适的从业者并预约"的完整流程:类型推荐、真实专长判断、多平台评分解读、负评分析、预约话术 | 🚧 开发中 |
 
 ## 三种安装方式
 

@@ -1,0 +1,25 @@
+# 能力测试:触发后活干得好不好。check 由 LLM 裁判逐条判(可含硬检查)。
+# 注:这些用例会真实跑搜索工具,属"在开发中"的初始集,后续用 harvest.sh 把线上翻车案例并进来。
+
+- id: cap-001
+  input: "我大脚趾的趾甲发黄变厚,不确定是灰指甲还是银屑病甲损害。我在加州 Fremont,有 PPO,想找个能确诊的医生。"
+  check:
+    - "推荐皮肤科(dermatology)优先于足科(podiatry),并解释理由(皮肤科能同时评估全身银屑病表现 / 覆盖面更广)"
+    - "指出这类问题属常规诊疗、不必执着于找'顶级专家',而应看是否愿意做检测确诊(如真菌镜检/培养)而非经验性开药"
+    - "说明 PPO 通常可自行预约专科、无需转诊,但需确认 in-network"
+    - "给出可直接使用的预约话术(中英文)"
+
+- id: cap-002
+  input: "帮我在湾区找 3 个会说中文、评分高的家庭医生(PCP),我是 Kaiser HMO。"
+  check:
+    - "系统化收集多平台评分(至少 Google + 一个医疗体系内部或第三方平台),并分开解读两类评分性质不同"
+    - "单独列出负面评价分析(如账单/等待/沟通问题),区分医生本人 vs 诊所/体系问题"
+    - "指出 HMO 一般需 PCP 转诊看专科,并确认医生 in-network / 是否接受新患者"
+    - "按匹配度排序给出 3-5 位,含姓名、地点、电话、预约方式"
+
+- id: cap-003
+  input: "My mom (72) needs help recovering after a knee replacement. Who should we see and what should we look for?"
+  check:
+    - "Recommends orthopedic PT/DPT (ideally OCS-certified) for post-op rehab, not just 'a doctor'"
+    - "Explains how to gauge a provider's real expertise (WebMD/Healthgrades frequency data, patient review text) over the clinic's generic condition list"
+    - "Includes a disclaimer that it is not medical diagnosis and to follow the surgeon's protocol"

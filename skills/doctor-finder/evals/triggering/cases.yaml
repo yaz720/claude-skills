@@ -1,0 +1,19 @@
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)
+# 负例里务必放几条"本该由别的技能处理"的护栏例(相邻的健康类技能最易误触)。
+
+# ---------- 正例:该触发 ----------
+- { id: trig-001, input: "我最近膝盖老是疼,想找个医生看看,湾区的", expect: fire }
+- { id: trig-002, input: "帮我推荐一个会说中文的皮肤科医生,要接受PPO保险", expect: fire }
+- { id: trig-003, input: "脚趾甲发黄变厚,我该看什么科?", expect: fire }         # 只描述症状、未明说"找医生"
+- { id: trig-004, input: "想找个有康复背景的普拉提教练帮我练核心", expect: fire }
+- { id: trig-005, input: "find a good OB/GYN near Fremont that takes my PPO", expect: fire }
+- { id: trig-006, input: "孩子说话比同龄晚,想找人评估一下,该找谁?", expect: fire }  # 暗示找 SLP/儿科
+- { id: trig-007, input: "腰椎间盘突出,想找个物理治疗师做康复", expect: fire }
+
+# ---------- 负例:不该触发(相邻健康场景 / 别的技能的活) ----------
+- { id: trig-neg-001, input: "帮我算算这盘宫保鸡丁大概多少热量", expect: no-fire }        # → nutrition-analyzer
+- { id: trig-neg-002, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                  # → supp-research
+- { id: trig-neg-003, input: "草饲牛肉和谷饲牛肉有什么区别?", expect: no-fire }           # → food-research
+- { id: trig-neg-004, input: "阿司匹林的作用机理是什么?", expect: no-fire }               # 纯知识问答,不是找从业者
+- { id: trig-neg-005, input: "帮我画一张就医流程图", expect: no-fire }                    # → figureforge
+- { id: trig-neg-006, input: "帮我把这份体检报告的指标解读一下", expect: no-fire }         # 解读报告 ≠ 找医生
