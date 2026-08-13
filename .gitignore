@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# 评测时保存的技能产出(用于能力测试,本地临时,不入库)
+skills/*/evals/capability/outputs/
+
+# 注意:dist/*.skill 要提交进 git(供下载一键装),不要忽略。

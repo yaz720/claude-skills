@@ -1,0 +1,118 @@
+---
+name: skill-forge
+description: >-
+  Scaffold, test-tune, and ship a NEW Claude Code skill end-to-end — the engineering parts the
+  model won't do on its own and that the official skill-creator leaves out: a dual-compatible
+  folder layout (works both bare-copied and as a plugin), preflight checks, triggering + capability
+  evals with a scored report, git/GitHub publish to your skills repo, a downloadable .skill package,
+  and harvesting real-world failures back into the eval set. It wraps the official skill-creator for
+  the writing step and adds the create → test → publish → harvest loop around it. Trigger 触发词:
+  造技能、新建/创建技能、打包技能、发布/分发技能、给技能做评测、调技能的触发词/description、把翻车案例加进测试集、
+  build/package/ship a skill, skill eval, tune a skill's triggering. 不要触发 (do NOT trigger):
+  merely running or using an existing skill; ordinary writing/coding tasks; drawing diagrams or charts
+  (that is figureforge's job); or only editing project CLAUDE.md rules.
+---
+
+# skill-forge (锻技坊)
+
+一个**造技能的技能**。它在官方 `skill-creator` 之上包一层**编排**,补官方没有的工程环节,把
+**造 → 测 → 发 → 回收**串成闭环。撰写正文这一步转交官方 skill-creator;其余由本技能负责。
+
+> **为什么它值得被触发**:模型只在"这个技能能提供它自己做不到的东西"时才会翻它。本技能的差异化价值
+> 不是"帮你写技能"(那和内建重叠),而是**脚手架、预检、评测调优、git/GitHub 发布、失败回收**。
+> description 也据此起草。
+
+## 什么时候用我 / 什么时候别用我
+
+**用我**:要新建一个技能;要给技能打包 / 发布 / 分发;要给技能做评测或调触发词;要把一个真实翻车案例加进测试集。
+
+**别用我**:只是运行 / 使用某个已存在的技能;一般写文档或写代码;画图或做图表(那是 figureforge 的活);只想改项目 `CLAUDE.md` 规则。
+
+---
+
+## 工作流(照此逐步,细节按需读 references)
+
+### 1. 构思 Ideate
+先想清楚三件事,别急着建文件:
+- **差异化价值**:这技能比模型内建**多提供**了什么?(自触发概率正比于此)
+- **触发 / 不触发**:中英文触发词 + **否定例**(尤其容易误触的相邻场景)。
+- **scope**:**问用户一句**——「这个技能是**全局(所有对话可用)**,还是**某个项目专属**?[缺省:全局]」
+  - 全局 → 源进技能总库 `claude-skills`,软链到 `~/.claude/skills/`。
+  - 项目专属 → 源直接放进那个项目的 `.claude/skills/<name>/`,跟项目走,不进总库。
+
+→ 触发设计详见 `references/triggering-design.md`。
+
+### 2. 脚手架 Scaffold
+```bash
+python skills/skill-forge/scripts/scaffold.py <new-skill-name> [--repo ~/Desktop/claude-skills] [--project <path>]
+```
+生成**双兼容**目录(`skills/<name>/` 既能裸拷、又能当 plugin)+ `SKILL.md` 模板 + `evals/` 模板。
+→ 布局与三种安装方式详见 `references/packaging.md`。
+
+### 3. 落位 / 激活 Activate
+把源软链进激活区(全局或项目)。scaffold 会提示具体命令,形如:
+```bash
+ln -s ~/Desktop/claude-skills/skills/<name> ~/.claude/skills/<name>
+```
+
+### 4. 撰写 Author
+把正文撰写**交给官方 skill-creator**。起草 `description` 时**默认做到**:
+- 以**差异化价值开头**(不是泛泛"帮你做 X");
+- 精确"push"(点名触发场景)+ **补否定例**;
+- **中英文触发词**并列;
+- 起草后**自动核对 ≤ 1024 字符**(打包成 `.skill` 会校验,超了会失败)。
+
+### 5. 预检 Preflight
+```bash
+bash skills/skill-forge/scripts/preflight.sh <path/to/skill>
+```
+- `claude -p "OK"` 验 CLI 认证 —— ⚠ **认证过期时,触发评测会静默把所有触发读成 0,且"改写描述"步会崩**;
+- 核对 description 字数 ≤ 1024。
+**评测 / 打包前必先 preflight。**
+
+### 6. 测试 Test
+```bash
+python skills/skill-forge/scripts/eval_run.py <path/to/skill>
+```
+先跑**触发测试**、再跑**能力测试**,出**分栏报告**。
+⚠ **重叠型技能(画图 / 写文本这类)触发基准会失灵**:模型直接内联做了、不翻技能,导致候选描述**同分**。
+检测到"全同分 / 全 0"时报「**基准盲区,请人工判**」,别据此误判描述质量。
+→ 详见 `references/eval-and-tuning.md`。
+
+### 7. 调优 Tune(半自动,档二)
+针对失败项,给出**已自测、带成绩单**的修改建议(diff),**用户点头才落地**。机制:
+- **单一总分 + 全量回归 + 棘轮**:每个候选改动对整套测试集重跑、算总分,**只收严格变高**的;
+- **无进展预算**:连续 N 次打不过 best 就判 plateau、停;区分真 plateau 与基准盲区;
+- **分支隔离**:在 `tune/<name>` 分支上跑,`main` 永远 last-known-good,点头才 merge。
+- 触发类建议改 `description`、能力类建议改正文/脚本,**分栏给,别混**。
+→ 详见 `references/eval-and-tuning.md`。
+
+### 8. 打包 Package
+```bash
+bash skills/skill-forge/scripts/package.sh <path/to/skill> <repo-root>/dist
+```
+调官方 `package_skill.py` 生成 / 重打 `dist/<name>.skill`。
+**改过 SKILL.md 必重打**;打包会再校验 ≤1024(第二道闸)。
+
+### 9. 发布 Publish
+- `git commit` 把【源 + `dist/<name>.skill`】一起提交;
+- **pre-push 涉密守卫**:推前扫一遍有没有误写密钥 / 凭据(总库缺省 public);
+- push 到 `claude-skills`;
+- **推后深度验证**:抓远程实际内容核对关键改动,而非只看本地(见全局 CLAUDE.md)。
+
+### 10. 回收 Harvest(真闭环)
+线上翻车时:
+```bash
+bash skills/skill-forge/scripts/harvest.sh <path/to/skill> "<失败输入>" <fire|no-fire|capability>
+```
+把这个真实案例记进该技能的 `evals/`,成为防回归的新测试。**测试集是用出来的,不是一次性造的。**
+
+---
+
+## 改名注意
+技能改名牵动多处(name / 文件夹 / plugin.json / marketplace.json / .skill / 软链 / GitHub repo)。
+**任何改名前先读 `references/rename-checklist.md`。**
+
+## 边界(不写进这个可分享技能)
+"永远走我的封装""总库库名 / marketplace 名 / package_skill.py 的机器路径 / 裁判模型偏好"这类
+**项目专有或强制规则**,放**项目级 CLAUDE.md**,不写进本技能——技能只放通用、可移植的 know-how。

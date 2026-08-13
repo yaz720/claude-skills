@@ -1,0 +1,15 @@
+# skill-forge 自己的能力测试。check 由 LLM 裁判逐条判(缺产出会跳过,见 eval_run.py)。
+- id: cap-001
+  input: "造一个把 markdown 转成周报的技能"
+  check:
+    - "生成了双兼容目录结构(skills/<name>/ 含 SKILL.md、references/、scripts/、evals/)"
+    - "description 以差异化价值开头,而非泛泛的'帮你做 X'"
+    - "description 含中英文触发词,并且包含至少一条否定例"
+    - "description <= 1024 字符"
+    - "提示了 scope 问题(全局还是项目专属)"
+- id: cap-002
+  input: "帮我把 md-weekly 这个技能打包成可下载的 .skill"
+  check:
+    - "产物是 dist/md-weekly.skill(放仓库根 dist/,不放技能文件夹内)"
+    - "提到改过 SKILL.md 需重新打包"
+    - "提到打包会校验 description <= 1024"
