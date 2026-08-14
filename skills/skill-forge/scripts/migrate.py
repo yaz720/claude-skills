@@ -106,7 +106,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Migrate an existing skill into the skill-forge standard layout.")
     ap.add_argument("source", help="源:一个 .skill 文件、一个技能文件夹、或一个 SKILL.md")
     ap.add_argument("--name", default=None, help="覆盖技能名(kebab-case);缺省取 frontmatter 的 name:")
-    ap.add_argument("--repo", default="~/Desktop/claude-skills", help="全局技能的 monorepo 根(缺省 ~/Desktop/claude-skills)")
+    ap.add_argument("--repo", default="~/Desktop/claude-skills", help="总库根:公开或私有 monorepo(缺省=公开总库);私密跨项目技能指向 private 总库")
     ap.add_argument("--project", default=None, help="项目专属:源放进 <project>/.claude/skills/")
     ap.add_argument("--force", action="store_true", help="目标已存在时覆盖(默认拒绝,保护已有技能)")
     args = ap.parse_args()

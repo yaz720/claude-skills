@@ -1,6 +1,8 @@
 # claude-skills
 
-yaz720 的 Claude Code **技能总库**——所有自建技能的源头,也是将来对外分发的 marketplace。
+yaz720 的 Claude Code **公开技能总库**——所有可分享自建技能的源头,也是将来对外分发的 marketplace。
+
+> **三种落位**:可公开的放本库;**私有、跨项目**的放姊妹私有库 `claude-skills-private`(private);**只服务单个项目**的放该项目自己的 `.claude/skills/`。三者同一套 skill-forge 流程,区别只在"源码落在哪"。🔒 私密内容绝不进本公开库。
 
 每个技能放在 `skills/<name>/`,打好的可下载包放在 `dist/<name>.skill`。
 

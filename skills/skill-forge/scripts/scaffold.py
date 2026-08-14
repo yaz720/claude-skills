@@ -70,7 +70,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Scaffold a new Claude Code skill (dual-compatible).")
     ap.add_argument("name", help="new skill name, kebab-case (e.g. md-weekly)")
     ap.add_argument("--repo", default="~/Desktop/claude-skills",
-                    help="skills monorepo root for a GLOBAL skill (default: ~/Desktop/claude-skills)")
+                    help="总库根:公开或私有 monorepo(缺省=公开总库);私密跨项目技能指向你的 private 总库。仅在无 --project 时用")
     ap.add_argument("--project", default=None,
                     help="project path for a PROJECT-scoped skill (source goes to <project>/.claude/skills/)")
     args = ap.parse_args()
