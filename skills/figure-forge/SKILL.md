@@ -1,5 +1,5 @@
 ---
-name: figureforge
+name: figure-forge
 description: >-
   Turn an idea, a dataset, or a sketch into a polished diagram or chart and DELIVER it as real,
   downloadable SVG + PNG files — the part a plain answer skips, since by default Claude only draws

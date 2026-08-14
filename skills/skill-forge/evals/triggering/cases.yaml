@@ -6,7 +6,7 @@
 - { id: trig-004, input: "build a new skill that summarizes PDFs", expect: fire }
 - { id: trig-005, input: "把这个翻车的例子加进技能的测试集", expect: fire }
 # 负例(不该触发 no-fire)——护栏
-- { id: trig-neg-001, input: "帮我画一张部署流程的架构图", expect: no-fire }   # figureforge 的活
+- { id: trig-neg-001, input: "帮我画一张部署流程的架构图", expect: no-fire }   # figure-forge 的活
 - { id: trig-neg-002, input: "运行一下我那个周报技能生成本周周报", expect: no-fire } # 只是用已有技能
 - { id: trig-neg-003, input: "帮我写个 Python 脚本读取 csv", expect: no-fire }      # 一般写代码
 - { id: trig-neg-004, input: "在项目 CLAUDE.md 里加一条 push 前确认的规则", expect: no-fire } # 只改规则

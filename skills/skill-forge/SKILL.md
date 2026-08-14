@@ -12,7 +12,7 @@ description: >-
   把翻车案例加进测试集、build/package/ship/migrate a skill, skill eval, tune a skill's triggering.
   不要触发 (do NOT trigger):
   merely running or using an existing skill; ordinary writing/coding tasks; drawing diagrams or charts
-  (that is figureforge's job); or only editing project CLAUDE.md rules.
+  (that is figure-forge's job); or only editing project CLAUDE.md rules.
 ---
 
 # skill-forge (锻技坊)
@@ -28,7 +28,7 @@ description: >-
 
 **用我**:要新建一个技能;**要把一个旧技能移植 / 收编进本框架**;要给技能打包 / 发布 / 分发;要给技能做评测或调触发词;要把一个真实翻车案例加进测试集。
 
-**别用我**:只是运行 / 使用某个已存在的技能;一般写文档或写代码;画图或做图表(那是 figureforge 的活);只想改项目 `CLAUDE.md` 规则。
+**别用我**:只是运行 / 使用某个已存在的技能;一般写文档或写代码;画图或做图表(那是 figure-forge 的活);只想改项目 `CLAUDE.md` 规则。
 
 ---
 
@@ -41,6 +41,9 @@ description: >-
 - **scope**:**问用户一句**——「这个技能是**全局(所有对话可用)**,还是**某个项目专属**?[缺省:全局]」
   - 全局 → 源进技能总库 `claude-skills`,软链到 `~/.claude/skills/`。
   - 项目专属 → 源直接放进那个项目的 `.claude/skills/<name>/`,跟项目走,不进总库。
+- **命名(kebab-case)**:技能名一律**全小写**,**多个词之间用连字符 `-` 连**(如 `doctor-finder`、`figure-forge`、`skill-forge`)。
+  - 校验正则:`^[a-z0-9]+(-[a-z0-9]+)*$`(scaffold / migrate 自动把关)。
+  - ⚠ 单个**连写词**(如 `figureforge`)虽能过正则,但**违背本约定**——词边界要用 `-` 断开,保持全库一致、可读、可预测显式命令名。改名牵动多处,见 `references/rename-checklist.md`。
 
 → 触发设计详见 `references/triggering-design.md`。
 

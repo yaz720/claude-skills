@@ -64,4 +64,4 @@ bash scripts/package.sh <path/to/skill> <repo-root>/dist
 { "name": "yaz720", "description": "yaz720's Claude Code plugins",
   "plugins": [ { "name": "<name>", "description": "...", "source": "./skills/<name>" } ] }
 ```
-(参考现有 `~/Desktop/figureforge/.claude-plugin/` 的实际写法。)
+(写法即上面两段 JSON;marketplace 放**总库根**,一份清单列出所有技能,`source` 各指 `./skills/<name>`。)

@@ -15,7 +15,7 @@
 `evals/triggering/cases.yaml`:
 ```yaml
 - { id: trig-001, input: "帮我把这个技能打包发到我的技能库", expect: fire }
-- { id: trig-neg-003, input: "帮我画一张架构流程图",        expect: no-fire }  # 护栏:该由 figureforge 接
+- { id: trig-neg-003, input: "帮我画一张架构流程图",        expect: no-fire }  # 护栏:该由 figure-forge 接
 ```
 
 `evals/capability/cases.yaml`:
