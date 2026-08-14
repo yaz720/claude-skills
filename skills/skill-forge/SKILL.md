@@ -88,6 +88,11 @@ bash skills/skill-forge/scripts/preflight.sh <path/to/skill>
 python skills/skill-forge/scripts/eval_run.py <path/to/skill>
 ```
 先跑**触发测试**、再跑**能力测试**,出**分栏报告**。
+
+**基线要趁早,别等技能"完美"**(基线是棘轮的锚,没它就判不了改动更好/更差):
+- **触发基线立刻做**——description 一诞生就能测、又便宜,第一时间抓描述缺陷(doctor-finder 就是这样抓到"找某类医生"漏触发的)。
+- **能力基线按成熟度推迟**——它要技能真跑出产出;工具/核心流程还没就绪就先把能力用例写好、标 pending,等能产出再跑。成熟度由本技能(模型)判断,够格了就主动建议用户做一次基线。
+
 ⚠ **重叠型技能(画图 / 写文本这类)触发基准会失灵**:模型直接内联做了、不翻技能,导致候选描述**同分**。
 检测到"全同分 / 全 0"时报「**基准盲区,请人工判**」,别据此误判描述质量。
 → 详见 `references/eval-and-tuning.md`。
@@ -98,6 +103,7 @@ python skills/skill-forge/scripts/eval_run.py <path/to/skill>
 - **无进展预算**:连续 N 次打不过 best 就判 plateau、停;区分真 plateau 与基准盲区;
 - **分支隔离**:在 `tune/<name>` 分支上跑,`main` 永远 last-known-good,点头才 merge。
 - 触发类建议改 `description`、能力类建议改正文/脚本,**分栏给,别混**。
+- **不动靶子(红线)**:调优只改技能、**不改测试集**——动了 = 移动球门自己进球,测量作废;要改用例那是"改规格",单独做(见下方「评测生命周期与基线策略」)。
 → 详见 `references/eval-and-tuning.md`。
 
 ### 8. 打包 Package
@@ -121,6 +127,17 @@ bash skills/skill-forge/scripts/harvest.sh <path/to/skill> "<失败输入>" <fir
 把这个真实案例记进该技能的 `evals/`,成为防回归的新测试。**测试集是用出来的,不是一次性造的。**
 
 ---
+
+## 评测生命周期与基线策略
+用例不是一次性造出来的,它有生命周期;不同阶段对它的态度不同:
+
+1. **播种(建 / 迁时)**:scaffold / migrate 只给 TODO 占位。**别停在占位**——据技能用途**起草一版候选用例**(触发正负例 + 能力 rubric),**给用户过目、同意后落地**。
+2. **基线**:触发基线**立刻跑**(便宜、早抓描述缺陷);能力基线**待技能能真产出**时再跑(见第 6 步)。**基线是棘轮的锚——没有它,后续改动无从判断更好 / 更差。**
+3. **调优红线**:精调若为达成**现有**测试集(如改 description 让触发过),**绝不动用例**——靶子不动才测得准(见第 7 步)。
+4. **改规格才动用例**:只有技能**该做什么**变了(范围 / 意图),才有意识地改 / 加用例;这是**独立的一次"改靶子"**,单独做、说清,别夹在调优里偷改。
+5. **增长**:线上真翻车 → `harvest.sh` 收进 evals(第 10 步)。**测试集是用出来的,不是一次性造的。**
+
+**管理**:每技能自带 `evals/`(`triggering/` + `capability/` + `bar.yaml`),随技能进 git、可 diff、可 review;`bar.yaml` 是本技能达标线;用例尽量**注明出处**(手写 / harvest 自某次翻车 / 规格变更)。→ 详见 `references/eval-and-tuning.md`。
 
 ## 改名注意
 技能改名牵动多处(name / 文件夹 / plugin.json / marketplace.json / .skill / 软链 / GitHub repo)。

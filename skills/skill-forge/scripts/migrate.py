@@ -227,7 +227,9 @@ def main() -> None:
         print("  1) 项目级技能已在项目 .claude/skills/ 下,无需软链。")
     print(f"  2) 预检:  bash <skill-forge>/scripts/preflight.sh {dest}")
     print(f"  3) 测试:  python <skill-forge>/scripts/eval_run.py {dest}")
-    print("  4) 填 evals/ 里的占位用例 → 调优 → package.sh 打包 → 提交并 push。")
+    print("  ★ 迁入后别停在占位:据技能用途起草候选用例(经用户同意),立即跑一次【触发基线】")
+    print("     (旧技能常一条测试都没有,这步最值);能力基线待能真产出再跑。基线 = 后续判好坏的锚。")
+    print("  4) 调优 → package.sh 打包 → 提交并 push。")
     print("\n(原件未改动;这是一份收编进 monorepo 的副本。)")
 
 

@@ -116,6 +116,9 @@ def main() -> None:
         print("  2) 项目级技能已在项目的 .claude/skills/ 下,无需软链。")
     print("  3) 预检:  bash <skill-forge>/scripts/preflight.sh " + str(skill_dir))
     print("  4) 测试:  python <skill-forge>/scripts/eval_run.py " + str(skill_dir))
+    print("  ★ 别停在 evals 的 TODO 占位:据技能用途起草候选用例(触发正负例 + 能力 rubric),")
+    print("     用户过目同意后落地;并立即跑一次【触发基线】(便宜、早抓描述缺陷)。")
+    print("     能力基线待技能能真产出时再跑。基线是后续调优判好坏的锚(见 eval-and-tuning.md)。")
 
 
 if __name__ == "__main__":
