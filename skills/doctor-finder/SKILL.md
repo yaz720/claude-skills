@@ -1,6 +1,15 @@
 ---
 name: doctor-finder
-description: 帮助用户根据健康状况找到合适的医疗从业者（医生、治疗师、教练等）。当用户提到看医生、找医生、看病、就医、找specialist、找therapist、找PT、找教练、身体不舒服想找人看、不知道该看什么科、需要推荐医生、doctor recommendation、find a doctor、find a provider、哪种医生、什么科、应该看谁、provider search等话题时触发此技能。即使用户只是描述了一个症状或健康问题而没有明确说"找医生"，只要上下文暗示他们需要寻找医疗从业者，也应触发此技能。覆盖范围包括但不限于：各科医生（MD/DO）、家庭医生、儿科、妇产科、骨科、皮肤科、眼科、牙科等，以及物理治疗师（PT/DPT）、职业治疗师（OT）、脊椎治疗师（DC）、心理治疗师、营养师（RD）、普拉提/瑜伽教练（有康复背景的）、针灸师、护士执业者（NP）、医师助理（PA）等所有健康相关从业者。
+description: >-
+  不是简单搜一个医生,而是端到端帮你把"有个健康问题"变成"选对从业者并预约"——普通搜索给不了的那部分:
+  跨平台评分交叉解读(医疗体系大样本内部评分 vs Google/Yelp 文字评价,性质不同分开看)、判断医生的真实亚专长
+  (依据 WebMD/Healthgrades 诊疗频率、fellowship、论文,而非机构模板疾病列表)、系统化负面评价分析
+  (账单/等待/沟通)、保险 in-network 与 PPO/HMO 转诊导航、可直接用的预约话术。当用户要找或推荐任何医疗从业者、
+  问"该看什么科/该找谁"、或只描述症状却暗示需要就医时,触发此技能。覆盖:各科医生(MD/DO)、家庭医生(PCP)、
+  儿科/妇产/骨科/皮肤/眼/牙、物理治疗师(PT/DPT)、职业治疗师(OT)、脊椎(DC)、精神科/心理咨询、注册营养师(RD)、
+  针灸、正畸、NP/PA、有康复背景的普拉提/瑜伽教练等。触发词:找医生、推荐医生、看什么科、该找谁、找PT、找针灸,
+  find a doctor / provider, which specialist。不要触发:纯医学知识或用药/手术科普问答、解读体检报告、
+  算热量或做食谱(→nutrition-analyzer)、补剂选购(→supp-research)、食材对比(→food-research)、画图(→figure-forge)。
 ---
 
 # Doctor & Healthcare Provider Finder
