@@ -1,0 +1,13 @@
+<svg width="680" height="320" viewBox="0 0 680 320" role="img" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif">
+<title>月度营收(万元)</title>
+<desc>柱状图:1月32、2月28、3月41、4月39、5月47、6月52(万元)。</desc>
+<rect x="0" y="0" width="680" height="320" fill="#ffffff"/>
+<text x="60" y="30" font-size="14" fill="#333333">月度营收(万元)</text>
+<line x1="60" y1="280" x2="640" y2="280" stroke="#cccccc" stroke-width="1"/>
+<rect x="90" y="145" width="55" height="135" rx="4" fill="#4a90d9"/><text x="117" y="137" text-anchor="middle" font-size="12" fill="#333333">32</text><text x="117" y="300" text-anchor="middle" font-size="12" fill="#333333">1月</text>
+<rect x="185" y="162" width="55" height="118" rx="4" fill="#4a90d9"/><text x="212" y="154" text-anchor="middle" font-size="12" fill="#333333">28</text><text x="212" y="300" text-anchor="middle" font-size="12" fill="#333333">2月</text>
+<rect x="280" y="107" width="55" height="173" rx="4" fill="#4a90d9"/><text x="307" y="99" text-anchor="middle" font-size="12" fill="#333333">41</text><text x="307" y="300" text-anchor="middle" font-size="12" fill="#333333">3月</text>
+<rect x="375" y="115" width="55" height="165" rx="4" fill="#4a90d9"/><text x="402" y="107" text-anchor="middle" font-size="12" fill="#333333">39</text><text x="402" y="300" text-anchor="middle" font-size="12" fill="#333333">4月</text>
+<rect x="470" y="81" width="55" height="199" rx="4" fill="#4a90d9"/><text x="497" y="73" text-anchor="middle" font-size="12" fill="#333333">47</text><text x="497" y="300" text-anchor="middle" font-size="12" fill="#333333">5月</text>
+<rect x="565" y="60" width="55" height="220" rx="4" fill="#4a90d9"/><text x="592" y="52" text-anchor="middle" font-size="12" fill="#333333">52</text><text x="592" y="300" text-anchor="middle" font-size="12" fill="#333333">6月</text>
+</svg>

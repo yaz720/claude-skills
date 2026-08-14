@@ -1,0 +1,16 @@
+<svg width="680" height="120" viewBox="0 0 680 120" role="img" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif">
+<title>部署上线流程</title>
+<desc>提交代码 → CI 测试 → 构建镜像 → 部署预发 → 上线。</desc>
+<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#6b6f76"/></marker></defs>
+<rect x="0" y="0" width="680" height="120" fill="#ffffff"/>
+<text x="40" y="28" font-size="14" fill="#333333">部署上线流程</text>
+<rect x="40" y="52" width="100" height="44" rx="8" fill="#4a90d9"/><text x="90" y="79" text-anchor="middle" font-size="14" fill="#ffffff">提交代码</text>
+<rect x="165" y="52" width="100" height="44" rx="8" fill="#4a90d9"/><text x="215" y="79" text-anchor="middle" font-size="14" fill="#ffffff">CI 测试</text>
+<rect x="290" y="52" width="100" height="44" rx="8" fill="#4a90d9"/><text x="340" y="79" text-anchor="middle" font-size="14" fill="#ffffff">构建镜像</text>
+<rect x="415" y="52" width="100" height="44" rx="8" fill="#4a90d9"/><text x="465" y="79" text-anchor="middle" font-size="14" fill="#ffffff">部署预发</text>
+<rect x="540" y="52" width="100" height="44" rx="8" fill="#3fa96a"/><text x="590" y="79" text-anchor="middle" font-size="14" fill="#ffffff">上线</text>
+<line x1="140" y1="74" x2="161" y2="74" stroke="#6b6f76" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="265" y1="74" x2="286" y2="74" stroke="#6b6f76" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="390" y1="74" x2="411" y2="74" stroke="#6b6f76" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="515" y1="74" x2="536" y2="74" stroke="#6b6f76" stroke-width="2" marker-end="url(#ah)"/>
+</svg>
