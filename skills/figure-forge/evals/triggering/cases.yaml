@@ -1,4 +1,27 @@
-# 触发测试:正例该触发(fire)、负例不该触发(no-fire)
-# 负例里务必放几条"本该由别的技能处理"的护栏例。
-- { id: trig-001, input: "TODO 一条该触发的话", expect: fire }
-- { id: trig-neg-001, input: "TODO 一条不该触发的话", expect: no-fire }
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
+# 来源:作者手写的原始触发评测集(trigger-eval.json),迁入框架格式;查询原文保持不变。
+# 负例挑的是"相邻但该由别的工具接"的场景,专门卡 figure-forge 的边界。
+
+# ---------- 正例:该触发(结构类图 / 数据图表 / 草图清绘 / 导出源文件)----------
+- { id: trig-001, input: "帮我画个流程图,把我们家小卖部的进货流程理一下,大概是 供应商下单 → 收货核对 → 上架 → 每周盘点 这几步", expect: fire }
+- { id: trig-002, input: "I've got our Q3 signups by channel — organic 1240, paid 890, referral 430, email 210. can you make a chart that shows which channel brought the most?", expect: fire }
+- { id: trig-003, input: "这是我随手画在纸上的系统草图(见附图),能不能照着重画一版清爽的给我", expect: fire }
+- { id: trig-004, input: "把你上面那张对比图导出成 png,我要贴进这周的周报里", expect: fire }
+- { id: trig-005, input: "给我画一张微服务架构图:前端 → API 网关 → 三个后端服务(用户/订单/支付)→ 各自的数据库", expect: fire }
+- { id: trig-006, input: "draw me a timeline of the project phases: kickoff in jan, design feb-mar, build apr-jun, launch july", expect: fire }
+- { id: trig-007, input: "我想做张对比图,把 SVG、PNG、JPG 三种格式的优缺点并排列出来看", expect: fire }
+- { id: trig-008, input: "能不能把这个表格做成柱状图,横轴是月份纵轴是营收:1月32万 2月28万 3月41万 4月39万", expect: fire }
+- { id: trig-009, input: "帮我把这个审批逻辑画成图:如果金额大于1万就走人工审批,否则自动通过", expect: fire }
+- { id: trig-010, input: "刚那个示意图能给我 svg 源文件吗,我想自己改改颜色再用", expect: fire }
+
+# ---------- 负例:不该触发(相邻场景 / 该由别的工具接)----------
+- { id: trig-neg-001, input: "帮我画一只戴帽子的柯基,卡通风格,要可爱一点,当我的头像", expect: no-fire }          # → 文生图(想象作画),非结构图
+- { id: trig-neg-002, input: "这张发票照片(附图)帮我把金额和开票日期读出来填进表里", expect: no-fire }        # → OCR / 信息抽取
+- { id: trig-neg-003, input: "把我 Downloads 里那张 5MB 的产品图压缩一下,再裁成正方形", expect: no-fire }      # → 图像处理,不是画图
+- { id: trig-neg-004, input: "帮我做一个 10 页的产品介绍 PPT,主题是我们下季度要上的新功能", expect: no-fire }   # → pptx(做演示文稿)
+- { id: trig-neg-005, input: "给我这份 sales.csv 做个数据透视,算一下每个大区的平均客单价就行", expect: no-fire }  # → 表格/数据分析,未要图
+- { id: trig-neg-006, input: "口头跟我讲讲 OAuth 授权码流程到底是怎么一步步走的,我没概念", expect: no-fire }     # → 纯文字讲解,没要图/文件
+- { id: trig-neg-007, input: "帮我设计一个 app 的 logo,要极简、蓝色调、带个圆角的字母 D", expect: no-fire }       # → 文生图 / 视觉设计
+- { id: trig-neg-008, input: "用 React 给我写一个带筛选和排序的数据表格组件,加进我现有的后台项目里", expect: no-fire }  # → 写代码
+- { id: trig-neg-009, input: "把这份 PDF 报告的第 3 章内容提取成纯文本,我要复制到别处", expect: no-fire }         # → pdf 抽取
+- { id: trig-neg-010, input: "我想在官网放一个能实时更新的销售仪表盘,数据从我们后端 API 实时拉", expect: no-fire }   # → 前端/实时应用开发,非静态图交付
