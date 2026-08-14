@@ -1,19 +1,31 @@
-# 触发测试:正例该触发(fire)、负例不该触发(no-fire)
-# 负例里务必放几条"本该由别的技能处理"的护栏例(相邻的健康类技能最易误触)。
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
+# 覆盖 doctor-finder 宣称的从业者面(MD/DO、PCP、专科、PT、心理、RD、针灸、正畸、NP/PA…)
+# 及"只描述症状也应触发"的隐含场景。负例放相邻健康技能 + 纯医学知识问答的护栏。
 
-# ---------- 正例:该触发 ----------
+# ---------- 正例:该触发(要找某类医疗从业者)----------
 - { id: trig-001, input: "我最近膝盖老是疼,想找个医生看看,湾区的", expect: fire }
 - { id: trig-002, input: "帮我推荐一个会说中文的皮肤科医生,要接受PPO保险", expect: fire }
-- { id: trig-003, input: "脚趾甲发黄变厚,我该看什么科?", expect: fire }         # 只描述症状、未明说"找医生"
+- { id: trig-003, input: "脚趾甲发黄变厚,我该看什么科?", expect: fire }              # 只描述症状、未明说"找医生"
 - { id: trig-004, input: "想找个有康复背景的普拉提教练帮我练核心", expect: fire }
 - { id: trig-005, input: "find a good OB/GYN near Fremont that takes my PPO", expect: fire }
-- { id: trig-006, input: "孩子说话比同龄晚,想找人评估一下,该找谁?", expect: fire }  # 暗示找 SLP/儿科
+- { id: trig-006, input: "孩子说话比同龄晚,想找人评估一下,该找谁?", expect: fire }    # 暗示找 SLP/儿科
 - { id: trig-007, input: "腰椎间盘突出,想找个物理治疗师做康复", expect: fire }
+- { id: trig-008, input: "最近情绪很低落、提不起劲,想找个能开药的精神科医生看看", expect: fire }  # psychiatrist
+- { id: trig-009, input: "孩子牙齿不太齐,想找个靠谱的正畸医生", expect: fire }         # orthodontist
+- { id: trig-010, input: "确诊糖尿病了,想找个正经注册营养师帮我调饮食方案", expect: fire }  # RD(注意与"算热量"区分)
+- { id: trig-011, input: "肩膀慢性疼想试试针灸,附近有没有靠谱的针灸师?", expect: fire }   # acupuncturist
+- { id: trig-012, input: "I noticed a new mole that looks a bit odd — who should I go see to get it checked?", expect: fire }  # 症状→找皮肤科
+- { id: trig-013, input: "这半年反复头晕,看了两个医生都没查出原因,我到底该找哪种专家?", expect: fire }  # 分诊/该看谁
 
-# ---------- 负例:不该触发(相邻健康场景 / 别的技能的活) ----------
+# ---------- 负例:不该触发 ----------
+# (a) 相邻健康技能的活
 - { id: trig-neg-001, input: "帮我算算这盘宫保鸡丁大概多少热量", expect: no-fire }        # → nutrition-analyzer
 - { id: trig-neg-002, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                  # → supp-research
 - { id: trig-neg-003, input: "草饲牛肉和谷饲牛肉有什么区别?", expect: no-fire }           # → food-research
-- { id: trig-neg-004, input: "阿司匹林的作用机理是什么?", expect: no-fire }               # 纯知识问答,不是找从业者
-- { id: trig-neg-005, input: "帮我画一张就医流程图", expect: no-fire }                    # → figure-forge
+- { id: trig-neg-004, input: "帮我画一张就医流程图", expect: no-fire }                    # → figure-forge
+# (b) 纯医学知识问答 / 报告解读 —— 不是"找从业者"
+- { id: trig-neg-005, input: "阿司匹林的作用机理是什么?", expect: no-fire }               # 知识问答
 - { id: trig-neg-006, input: "帮我把这份体检报告的指标解读一下", expect: no-fire }         # 解读报告 ≠ 找医生
+- { id: trig-neg-007, input: "布洛芬和对乙酰氨基酚能一起吃吗?", expect: no-fire }          # 用药信息问答
+- { id: trig-neg-008, input: "科普一下膝关节置换手术大概怎么做、有哪些风险", expect: no-fire }  # 手术科普,非找医生
+- { id: trig-neg-009, input: "what's a normal fasting blood glucose range for an adult?", expect: no-fire }  # 医学常识问答

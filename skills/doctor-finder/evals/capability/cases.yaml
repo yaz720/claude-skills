@@ -23,3 +23,10 @@
     - "Recommends orthopedic PT/DPT (ideally OCS-certified) for post-op rehab, not just 'a doctor'"
     - "Explains how to gauge a provider's real expertise (WebMD/Healthgrades frequency data, patient review text) over the clinic's generic condition list"
     - "Includes a disclaimer that it is not medical diagnosis and to follow the surgeon's protocol"
+
+- id: cap-004
+  input: "我长期焦虑、失眠大半年了,想找人系统看看,但不确定该找心理咨询师还是精神科医生。我在西雅图,有 PPO。"
+  check:
+    - "讲清区别并按需求给建议:精神科医生(psychiatrist,能开药)vs 心理治疗师/咨询师(psychologist/LCSW/LMFT,做谈话治疗、多数不能开药),并说明失眠+焦虑常见的联合方案"
+    - "给出可操作的找人路径:PPO 通常可自行预约、确认 in-network 与是否接受新患者,并提示等待时间/预约话术"
+    - "明确这不是诊断;若出现自伤或危机念头,提供紧急求助指引(如 988 / 急诊)"
