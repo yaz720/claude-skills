@@ -5,10 +5,12 @@ description: >-
   model won't do on its own and that the official skill-creator leaves out: a dual-compatible
   folder layout (works both bare-copied and as a plugin), preflight checks, triggering + capability
   evals with a scored report, git/GitHub publish to your skills repo, a downloadable .skill package,
-  and harvesting real-world failures back into the eval set. It wraps the official skill-creator for
+  and harvesting real-world failures back into the eval set. It also migrates an older skill (loose
+  folder, lone SKILL.md, or packaged .skill) into this layout. It wraps the official skill-creator for
   the writing step and adds the create → test → publish → harvest loop around it. Trigger 触发词:
-  造技能、新建/创建技能、打包技能、发布/分发技能、给技能做评测、调技能的触发词/description、把翻车案例加进测试集、
-  build/package/ship a skill, skill eval, tune a skill's triggering. 不要触发 (do NOT trigger):
+  造技能、新建/创建技能、移植/收编/导入现有技能、打包技能、发布/分发技能、给技能做评测、调技能的触发词/description、
+  把翻车案例加进测试集、build/package/ship/migrate a skill, skill eval, tune a skill's triggering.
+  不要触发 (do NOT trigger):
   merely running or using an existing skill; ordinary writing/coding tasks; drawing diagrams or charts
   (that is figureforge's job); or only editing project CLAUDE.md rules.
 ---
@@ -24,7 +26,7 @@ description: >-
 
 ## 什么时候用我 / 什么时候别用我
 
-**用我**:要新建一个技能;要给技能打包 / 发布 / 分发;要给技能做评测或调触发词;要把一个真实翻车案例加进测试集。
+**用我**:要新建一个技能;**要把一个旧技能移植 / 收编进本框架**;要给技能打包 / 发布 / 分发;要给技能做评测或调触发词;要把一个真实翻车案例加进测试集。
 
 **别用我**:只是运行 / 使用某个已存在的技能;一般写文档或写代码;画图或做图表(那是 figureforge 的活);只想改项目 `CLAUDE.md` 规则。
 
@@ -48,6 +50,14 @@ python skills/skill-forge/scripts/scaffold.py <new-skill-name> [--repo ~/Desktop
 ```
 生成**双兼容**目录(`skills/<name>/` 既能裸拷、又能当 plugin)+ `SKILL.md` 模板 + `evals/` 模板。
 → 布局与三种安装方式详见 `references/packaging.md`。
+
+### 2′. 移植现有技能 Migrate(scaffold 的替代入口)
+手上有**早于本框架**的旧技能(散装文件夹 / 只有一个 `SKILL.md` / 已打包 `.skill`),用它收编进标准布局:
+```bash
+python skills/skill-forge/scripts/migrate.py <源> [--name <kebab-name>] [--repo ~/Desktop/claude-skills] [--project <path>]
+```
+**非破坏**(不动原件)、**保留**源里已有正文 / references / scripts / 已写好的 evals、只**补齐**缺失骨架(与 scaffold 同模板)、目标已存在则拒绝(除非 `--force`)。移植 = 接在第 3 步之前,之后照常 preflight→eval→package→publish。
+→ 详见 `references/migration.md`。
 
 ### 3. 落位 / 激活 Activate
 把源软链进激活区(全局或项目)。scaffold 会提示具体命令,形如:
