@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" font-family="PingFang SC, Hiragino Sans GB, sans-serif">
+  <rect width="640" height="440" fill="#ffffff"/>
+  <text x="320" y="34" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2937">Q3 各渠道注册数</text>
+
+  <!-- y axis grid + labels (0 / 620 / 1240) -->
+  <line x1="70" y1="370" x2="600" y2="370" stroke="#9ca3af" stroke-width="1.5"/>
+  <line x1="70" y1="215" x2="600" y2="215" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="70" y1="60"  x2="600" y2="60"  stroke="#e5e7eb" stroke-width="1"/>
+  <text x="60" y="375" text-anchor="end" font-size="12" fill="#6b7280">0</text>
+  <text x="60" y="220" text-anchor="end" font-size="12" fill="#6b7280">620</text>
+  <text x="60" y="65"  text-anchor="end" font-size="12" fill="#6b7280">1240</text>
+
+  <!-- bars: scale = 310/1240 = 0.25 px per unit -->
+  <!-- organic 1240 (highest, highlighted) -->
+  <rect x="100" y="60"  width="70" height="310" rx="4" fill="#f59e0b"/>
+  <text x="135" y="52"  text-anchor="middle" font-size="14" font-weight="700" fill="#b45309">1240</text>
+  <text x="135" y="392" text-anchor="middle" font-size="14" fill="#374151">organic</text>
+
+  <!-- paid 890 -->
+  <rect x="230" y="147" width="70" height="223" rx="4" fill="#3b82f6"/>
+  <text x="265" y="139" text-anchor="middle" font-size="14" fill="#1e40af">890</text>
+  <text x="265" y="392" text-anchor="middle" font-size="14" fill="#374151">paid</text>
+
+  <!-- referral 430 -->
+  <rect x="360" y="262" width="70" height="108" rx="4" fill="#3b82f6"/>
+  <text x="395" y="254" text-anchor="middle" font-size="14" fill="#1e40af">430</text>
+  <text x="395" y="392" text-anchor="middle" font-size="14" fill="#374151">referral</text>
+
+  <!-- email 210 -->
+  <rect x="490" y="317" width="70" height="53" rx="4" fill="#3b82f6"/>
+  <text x="525" y="309" text-anchor="middle" font-size="14" fill="#1e40af">210</text>
+  <text x="525" y="392" text-anchor="middle" font-size="14" fill="#374151">email</text>
+
+  <text x="320" y="424" text-anchor="middle" font-size="13" fill="#b45309">最多:organic(1240)</text>
+</svg>

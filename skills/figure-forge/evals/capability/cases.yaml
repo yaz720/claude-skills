@@ -12,6 +12,7 @@
 #     <svg ...>...</svg>
 #     [files] cap-001.svg + cap-001.png
 #   并把这两个产物文件也放到 outputs/ 下(本地评测产物,已 gitignore)。
+#   认可为标准的产出,复制到 golden/(入库,当"问→答"可视基线);逐次 outputs/ 仍 gitignore。
 # 没有 outputs/<id>.txt 时该用例自动跳过(不是失败),补上产出再重跑。
 # 覆盖三种输入模式:说明→流程图 / 数据→图表 / 结构→架构图。
 

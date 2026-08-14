@@ -105,6 +105,47 @@ def run_capability(skill_dir: Path, model: str | None):
     return results
 
 
+# ---------- 结果留档 ----------
+def append_results_log(skill_dir: Path, name: str, model, trig, cap) -> Path:
+    """把本次评测的分数摘要追加到 evals/RESULTS.md(可回看演进、据此重测)。
+    只记分数 + 失败项 + 产出去向——不写产出正文,故对含隐私的技能(如医生数据)也安全。"""
+    from datetime import datetime, timezone
+    import subprocess as _sp
+    ts = datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M %z")
+    try:
+        commit = _sp.run(["git", "-C", str(skill_dir), "rev-parse", "--short", "HEAD"],
+                         capture_output=True, text=True, timeout=10).stdout.strip() or "?"
+    except Exception:  # noqa: BLE001
+        commit = "?"
+    total = len(trig)
+    passed = sum(1 for r in trig if r["ok"])
+    negs = [r for r in trig if r["expect"] == "no-fire"]
+    negs_ok = all(r["ok"] for r in negs) if negs else True
+    fails = [r for r in trig if not r["ok"]]
+    cap_skip = [r for r in cap if r.get("skipped")]
+    cap_done = [r for r in cap if not r.get("skipped")]
+    lines = [f"## {ts}  ({commit}, judge={model or 'default'})",
+             f"- triggering: {passed}/{total}  (负例全过: {negs_ok})  [单跑快照,有噪声]"]
+    for r in fails:
+        lines.append(f"    - ❌ {r['id']}: expect={r['expect']} fired={r['fired']}")
+    cap_line = f"- capability: 已判 {len(cap_done)} / 跳过 {len(cap_skip)}"
+    if cap_skip:
+        cap_line += f"  (跳过: {', '.join(r['id'] for r in cap_skip)})"
+    lines += [cap_line,
+              "  产出:逐次在 outputs/(gitignore、可重生);认可的存 golden/(入库、当可视基线)",
+              ""]
+    log = skill_dir / "evals" / "RESULTS.md"
+    head = "" if log.exists() else (
+        f"# {name} 评测记录\n\n"
+        "每次 `eval_run.py` 自动追加一段(最新在文件末尾)。分数是**单跑快照、有噪声**,\n"
+        "只记分数/失败项/产出去向,不含产出正文(故隐私安全)。\n\n")
+    with open(log, "a", encoding="utf-8") as f:
+        if head:
+            f.write(head)
+        f.write("\n".join(lines) + "\n")
+    return log
+
+
 def main():
     if len(sys.argv) < 2:
         print("用法: python eval_run.py <path/to/skill>", file=sys.stderr)
@@ -139,6 +180,9 @@ def main():
             print(f"  ⚠ {r['id']}: 缺产出,跳过。{RUN_SKILL_HINT}")
         else:
             print(f"  {r['id']} 裁判结论:\n    {r['verdict']}")
+
+    log = append_results_log(skill_dir, name, model, trig, cap)
+    print(f"\n📝 已把本次分数追加到 {log}(记得连同改动一起提交,方便日后回看演进)。")
 
     print("\n达标线:", bar)
     print("提示:调优请在 tune/<name> 分支上跑,只收总分严格变高的改动(见 eval-and-tuning.md)。")

@@ -120,7 +120,7 @@ bash skills/skill-forge/scripts/package.sh <path/to/skill> <repo-root>/dist
 - **推后深度验证**:抓远程实际内容核对关键改动,而非只看本地(见全局 CLAUDE.md)。
 
 ### 10. 回收 Harvest(真闭环)
-线上翻车时:
+线上翻车、**或评测 / 试用时发现集里还没有的新失败模式**时:
 ```bash
 bash skills/skill-forge/scripts/harvest.sh <path/to/skill> "<失败输入>" <fire|no-fire|capability>
 ```
@@ -135,9 +135,15 @@ bash skills/skill-forge/scripts/harvest.sh <path/to/skill> "<失败输入>" <fir
 2. **基线**:触发基线**立刻跑**(便宜、早抓描述缺陷);能力基线**待技能能真产出**时再跑(见第 6 步)。**基线是棘轮的锚——没有它,后续改动无从判断更好 / 更差。**
 3. **调优红线**:精调若为达成**现有**测试集(如改 description 让触发过),**绝不动用例**——靶子不动才测得准(见第 7 步)。
 4. **改规格才动用例**:只有技能**该做什么**变了(范围 / 意图),才有意识地改 / 加用例;这是**独立的一次"改靶子"**,单独做、说清,别夹在调优里偷改。
-5. **增长**:线上真翻车 → `harvest.sh` 收进 evals(第 10 步)。**测试集是用出来的,不是一次性造的。**
+5. **增长**:发现失败 → 收进 evals 当回归测试。来源有两类**都要收**:**线上翻车** 和 **评测 / 试用时发现的**(用 `harvest.sh`,第 10 步)。注意:**新增一条真实失败用例 = 扩覆盖(鼓励)**,和第 3 条"不动靶子"不冲突——被禁的是**编辑 / 删除已有用例**去凑分。已在集里、这次没过的用例本就留着当待修目标;要记的是集里**还没有的新失败模式**。
+6. **留档**:`eval_run.py` 每跑一次**自动**把分数追加到 `evals/RESULTS.md`(可回看演进、据此重测),连同改动一起提交。
 
-**管理**:每技能自带 `evals/`(`triggering/` + `capability/` + `bar.yaml`),随技能进 git、可 diff、可 review;`bar.yaml` 是本技能达标线;用例尽量**注明出处**(手写 / harvest 自某次翻车 / 规格变更)。→ 详见 `references/eval-and-tuning.md`。
+**产出怎么存(三层,别混)**:
+- **分数历史** `evals/RESULTS.md` —— 小、无隐私,**入库**。
+- **黄金参考** `evals/capability/golden/` —— 少量**认可的**标准产出,**入库**,当"问 → 答"可视基线 / 回归对照。
+- **逐次产出** `evals/capability/outputs/` —— 可重生、可能含隐私(如真实医生数据),**gitignore、不入库**;**隐私敏感技能绝不提交原始产出**(这正是 doctor-finder 能力测试"跳过"而非造假的原因)。
+
+**管理**:每技能自带 `evals/`(随技能进 git、可 diff);`bar.yaml` 是达标线;用例尽量**注明出处**(手写 / harvest / 规格变更)。→ 详见 `references/eval-and-tuning.md`。
 
 ## 改名注意
 技能改名牵动多处(name / 文件夹 / plugin.json / marketplace.json / .skill / 软链 / GitHub repo)。

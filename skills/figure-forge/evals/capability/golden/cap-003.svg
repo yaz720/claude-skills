@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" font-family="PingFang SC, Hiragino Sans GB, sans-serif">
+  <rect width="720" height="540" fill="#ffffff"/>
+  <text x="360" y="32" text-anchor="middle" font-size="21" font-weight="700" fill="#1f2937">微服务架构</text>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="8" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <!-- frontend -->
+  <rect x="290" y="50" width="140" height="52" rx="10" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="360" y="82" text-anchor="middle" font-size="17" fill="#1e3a8a">前端</text>
+
+  <!-- api gateway -->
+  <rect x="290" y="160" width="140" height="52" rx="10" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="360" y="192" text-anchor="middle" font-size="17" fill="#3730a3">API 网关</text>
+
+  <line x1="360" y1="102" x2="360" y2="158" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- services -->
+  <rect x="60"  y="290" width="140" height="52" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="130" y="322" text-anchor="middle" font-size="16" fill="#166534">用户服务</text>
+  <rect x="290" y="290" width="140" height="52" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="360" y="322" text-anchor="middle" font-size="16" fill="#166534">订单服务</text>
+  <rect x="520" y="290" width="140" height="52" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="590" y="322" text-anchor="middle" font-size="16" fill="#166534">支付服务</text>
+
+  <!-- gateway -> each service -->
+  <path d="M360,212 L360,255 L130,255 L130,288" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="360" y1="212" x2="360" y2="288" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M360,212 L360,255 L590,255 L590,288" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- databases (each service its own) -->
+  <rect x="70"  y="420" width="120" height="58" rx="28" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="130" y="447" text-anchor="middle" font-size="14" fill="#9a3412">用户库</text>
+  <text x="130" y="466" text-anchor="middle" font-size="11" fill="#c2703a">DB</text>
+  <rect x="300" y="420" width="120" height="58" rx="28" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="360" y="447" text-anchor="middle" font-size="14" fill="#9a3412">订单库</text>
+  <text x="360" y="466" text-anchor="middle" font-size="11" fill="#c2703a">DB</text>
+  <rect x="530" y="420" width="120" height="58" rx="28" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="590" y="447" text-anchor="middle" font-size="14" fill="#9a3412">支付库</text>
+  <text x="590" y="466" text-anchor="middle" font-size="11" fill="#c2703a">DB</text>
+
+  <line x1="130" y1="342" x2="130" y2="418" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="360" y1="342" x2="360" y2="418" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="590" y1="342" x2="590" y2="418" stroke="#6b7280" stroke-width="2" marker-end="url(#a)"/>
+</svg>
