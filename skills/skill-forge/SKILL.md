@@ -135,7 +135,14 @@ bash skills/skill-forge/scripts/package.sh <path/to/skill> <repo-root>/dist
 - `git commit` 把【源 + `dist/<name>.skill`】一起提交;
 - **pre-push 涉密守卫**:推前扫一遍有没有误写密钥 / 凭据(总库缺省 public);
 - push 到 `claude-skills`;
-- **推后深度验证**:抓远程实际内容核对关键改动,而非只看本地(见全局 CLAUDE.md)。
+- **推后深度验证**:核对远程**实际内容**,而非只看本地、也不只比哈希:
+  ```bash
+  git fetch -q origin && git show origin/<branch>:skills/<name>/SKILL.md | grep <关键改动>
+  git diff origin/<branch> -- skills/<name> dist/<name>.skill   # 为空即一致
+  ```
+  ⚠️ **别用 `raw.githubusercontent.com` 当主要手段**——它有分钟级 CDN 缓存,刚 push 完就抓
+  很可能拿到上一版,且**不报错**,会安静地给你一份看起来合理的旧文件。`.skill` 包同理:
+  要验包内容,`git show origin/<branch>:dist/<name>.skill > /tmp/x.skill && unzip -l /tmp/x.skill`。
 
 ### 10. 回收 Harvest(真闭环)
 线上翻车、**或评测 / 试用时发现集里还没有的新失败模式**时:
