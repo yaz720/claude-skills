@@ -55,9 +55,11 @@
 
 | 文件 | 说明 |
 |------|------|
-| `SKILL.md` | 技能主文件:frontmatter(触发描述)+ 六阶段流程 + 硬约束 + 语气要求 |
-| `references/panel-roster.md` | 候选专家库(组阁时读取) |
-| `references/report-template.md` | 完整报告模板(生成时读取) |
+| `SKILL.md` | 技能主文件:frontmatter(触发描述)+ 六阶段流程主干 + 硬约束 + 语气要求 |
+| `references/evidence-rules.md` | 阶段 2:证据沿革表格式、A/B/C/D 分级判据 |
+| `references/panel-roster.md` | 阶段 3:候选专家库(组阁时读取) |
+| `references/debate-mechanics.md` | 阶段 4:论据台账、论据结算、反向解读标注、两个条件模块的完整规格 |
+| `references/report-template.md` | 阶段 5:完整报告模板(生成时读取) |
 | `evals/` | 23 条触发用例 + 4 条能力用例 + 分数历史 |
 
 ---
