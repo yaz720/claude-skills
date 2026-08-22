@@ -14,7 +14,8 @@ claude-skills/
 └─ skills/
    ├─ skill-forge/           # 锻技坊:造技能的技能(造→测→发→回收 闭环)
    ├─ figure-forge/          # 把想法/数据/草图变成可下载的 SVG+PNG 图
-   └─ doctor-finder/         # 医疗从业者查找(开发中 🚧)
+   ├─ doctor-finder/         # 医疗从业者查找(开发中 🚧)
+   └─ mdt-consult/           # 多学科专家会诊(MDT):三轮结构化辩论 + 中英双语报告
 ```
 
 ## 技能一览
@@ -24,6 +25,7 @@ claude-skills/
 | [skill-forge](skills/skill-forge/) | 锻技坊 | 在官方 skill-creator 之上,补齐脚手架 / 预检 / 评测调优 / git 发布 / 失败回收,把造技能串成闭环 | ✅ |
 | [figure-forge](skills/figure-forge/) | 铸图坊 | 把一个想法、一组数据、或一张草图,变成可下载的 SVG + PNG 图文件(流程图/架构图/对比图/柱状折线饼图等),交付的是真文件而非内联预览 | ✅ |
 | [doctor-finder](skills/doctor-finder/) | 医疗从业者查找 | 从"我有个健康问题"到"找到合适的从业者并预约"的完整流程:类型推荐、真实专长判断、多平台评分解读、负评分析、预约话术 | 🚧 开发中 |
+| [mdt-consult](skills/mdt-consult/) | 多学科会诊 | 按病情遴选 4-6 位专家(含立场相反的对抗席),主持三轮结构化辩论——独立陈述→交叉质证→收敛定位分歧,产出中英双语会诊报告;用制度化对抗防止过早收敛 | 🚧 开发中 |
 
 ## 三种安装方式
 

@@ -1,0 +1,33 @@
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
+# 覆盖 mdt-consult 宣称的场景:描述病情/检查结果并想要多角度分析、多方观点、专家辩论、
+# 第二意见、中西医对比,或"看医生前理清思路"。
+# 负例重点是相邻健康技能的护栏 —— 尤其 doctor-finder(找人)与本技能(析病)的分界。
+
+# ---------- 正例:该触发 ----------
+- { id: trig-001, input: "我妈 62 岁,查出甲状腺结节 TI-RADS 4a,医生建议穿刺,想听听多方面的意见", expect: fire }
+- { id: trig-002, input: "腰椎间盘突出,一个医生说赶紧手术,另一个说保守治疗,我到底该听谁的?", expect: fire }
+- { id: trig-003, input: "帮我分析一下这个病情:反复口腔溃疡三年,伴关节痛和眼睛发红", expect: fire }        # 只说"分析一下"
+- { id: trig-004, input: "这个要不要做手术?", expect: fire }                                          # 极短,但明确求决策分析
+- { id: trig-005, input: "几个不同科的医生对我这个情况会怎么看?", expect: fire }
+- { id: trig-006, input: "西医说我是肠易激,中医怎么说?想对比看看", expect: fire }                        # 中西医对比
+- { id: trig-007, input: "这是我的化验单(附图),甲功五项和抗体都有异常,帮我看看该怎么理解、下一步怎么办", expect: fire }
+- { id: trig-008, input: "下周要见专家,想先把思路理清楚,该问哪些问题", expect: fire }                     # 门诊前准备
+- { id: trig-009, input: "想找个 second opinion,我这个乳腺结节 BI-RADS 3 的随访方案合理吗", expect: fire }
+- { id: trig-010, input: "My father was just diagnosed with early-stage prostate cancer and offered active surveillance vs surgery — can I get a multidisciplinary view?", expect: fire }
+- { id: trig-011, input: "长期疲劳、体重上升、月经紊乱,查了甲功正常,想听听不同专业的看法", expect: fire }
+- { id: trig-012, input: "医生开了他汀但我担心副作用,想听听正反两方面的论证", expect: fire }
+- { id: trig-013, input: "MRI 报告写了半月板 II 度信号影,骨科建议关节镜,康复科说先练,让专家们辩一下", expect: fire }
+
+# ---------- 负例:不该触发 ----------
+# (a) 相邻健康技能的活
+- { id: trig-neg-001, input: "膝盖疼想找个医生看看,湾区的,接受 PPO", expect: no-fire }                  # → doctor-finder(找人,不是析病)
+- { id: trig-neg-002, input: "脚趾甲发黄变厚,我该看什么科?", expect: no-fire }                          # → doctor-finder(分诊)
+- { id: trig-neg-003, input: "帮我算算这盘宫保鸡丁大概多少热量", expect: no-fire }                        # → nutrition-analyzer
+- { id: trig-neg-004, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                                 # → supp-research
+- { id: trig-neg-005, input: "帮我画一张这个疾病的诊疗流程图", expect: no-fire }                          # → figure-forge
+- { id: trig-neg-006, input: "把这份病历里的人名和医院都脱敏掉再存档", expect: no-fire }                    # → redact
+# (b) 纯知识问答 / 单点查询 —— 没有具体病情、没有求多角度
+- { id: trig-neg-007, input: "阿司匹林的作用机理是什么?", expect: no-fire }
+- { id: trig-neg-008, input: "成年人空腹血糖的正常范围是多少?", expect: no-fire }
+- { id: trig-neg-009, input: "科普一下膝关节置换手术大概怎么做", expect: no-fire }
+- { id: trig-neg-010, input: "帮我预约周四下午的复诊并写封邮件给诊所", expect: no-fire }                    # 事务性,非会诊
