@@ -1,0 +1,4 @@
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)
+# 负例里务必放几条"本该由别的技能处理"的护栏例。
+- { id: trig-001, input: "TODO 一条该触发的话", expect: fire }
+- { id: trig-neg-001, input: "TODO 一条不该触发的话", expect: no-fire }
