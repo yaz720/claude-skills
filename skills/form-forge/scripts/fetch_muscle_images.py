@@ -34,6 +34,16 @@ BAD_TITLE = (
     "mandible", "skull", "capitis", "cervicis", "oculi", "oris", "nasi", "labii",
     "tongue", "pharyn", "larynx", "cadaver", "dissection", "histolog", "micrograph",
     "stain", "ultrasound", "mri", "x-ray", "short head", "long head", "logo", "icon",
+    # 非解剖图：搜肌肉名会撞上医学图表、科普长图、病症宣传物
+    "syndrome", "hospital", "treatment", "cost of", "length of stay", "average",
+    "infographic", "statistics", "chart", "poster",
+)
+# 生物学撞词：不少肌肉名同时是动植物的种加词，搜出来是海参、海百合、花的照片。
+# 实例：Multifidus → Comaster multifidus(海百合) / Astichopus multifidus(海参) /
+#       Carthamus multifidus(红花属)。属名首字母大写、后接种加词是典型特征。
+BAD_BIOLOGY = (
+    "comaster", "astichopus", "carthamus", "feather star", "sea cucumber",
+    "in mexico", "in saint lucia", "close up)", "cm)",
 )
 # 拉丁拼法变体：维基收录的拼法常与教科书不同。一次搜空绝不等于没有。
 SPELLING_HINTS = {
@@ -90,17 +100,24 @@ def search_candidates(en):
     for alt in SPELLING_HINTS.get(en.lower(), []):
         queries.insert(1, 'intitle:"%s"' % alt)
     seen = {}
+    errors = []          # 绝不静默吞异常：查询失败和"确实没有"必须分得开
     for q in queries:
         try:
             res = api({"action": "query", "list": "search", "srsearch": q,
                        "srnamespace": 6, "srlimit": 40})["query"]["search"]
-        except Exception:
+        except Exception as e:
+            errors.append("%s -> %s" % (q, e))
+            time.sleep(2.0)          # 多半是限流，退避后再试下一条
             continue
         for c in meta_for([r["title"] for r in res]):
             seen[c[0]] = c
-        time.sleep(0.2)
+        time.sleep(0.6)              # 连续调用容易被限流，节流放宽
         if len(seen) >= 8:
             break
+    if errors and not seen:
+        raise RuntimeError(
+            "全部查询都失败了，这不等于维基上没有这块肌肉。多半是被限流，"
+            "隔几秒重试即可。失败详情：\n  " + "\n  ".join(errors))
 
     words = [w.lower() for w in en.split()]
     alts = [a.lower() for a in SPELLING_HINTS.get(en.lower(), [])]
@@ -112,6 +129,15 @@ def search_candidates(en):
         if any(b in (author or "").lower() for b in BAD_AUTHORS):
             continue
         if any(b in t for b in BAD_TITLE):
+            continue
+        if any(b in t for b in BAD_BIOLOGY):
+            continue
+        # 通用生物学撞词兜底：目标词前面紧跟一个首字母大写的拉丁属名，多半是物种而非肌肉
+        # 只对【单词】肌肉名启用：属名+种加词的撞词风险只在这种情况下存在。
+        # 双词解剖名（Serratus anterior）本身就长成"属名+种加词"的样子，套上去会自伤。
+        if len(en.split()) == 1 \
+           and re.search(r"\b[A-Z][a-z]{3,}\s+" + re.escape(en), title, re.I) \
+           and not re.search(r"(muscle|musculus|anatom|gray|sobo|compartment)", t):
             continue
         # 严格校验：标题必须含完整目标词组（或某个已知拼法变体）
         if not (all(x in t for x in words) or any(a.split()[0] in t for a in alts)):
@@ -127,6 +153,7 @@ def search_candidates(en):
         if "small" in t:
             s -= 15
         scored.append((s, title, url, mime, w, size, author, lic))
+    scored = [c for c in scored if c[0] > 0]
     scored.sort(reverse=True)
     return scored
 
@@ -188,7 +215,11 @@ def main():
     a = ap.parse_args()
 
     if a.search:
-        cands = search_candidates(a.search)
+        try:
+            cands = search_candidates(a.search)
+        except RuntimeError as e:
+            print("⚠ %s" % e)
+            return 2
         if not cands:
             print("没有候选。换个拼法再试一次，别急着断定维基上没有。")
             print("已知会变形的拼法见脚本里的 SPELLING_HINTS。")
