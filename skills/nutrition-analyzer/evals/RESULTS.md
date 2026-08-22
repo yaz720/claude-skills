@@ -8,3 +8,8 @@
 - capability: 已判 0 / 跳过 4  (跳过: cap-001, cap-002, cap-003, cap-004)
   产出:逐次在 outputs/(gitignore、可重生);认可的存 golden/(入库、当可视基线)
 
+## 2026-08-22 12:37 -0700  (6114ea4, judge=claude-sonnet-5)
+- triggering: 26/26  (负例全过: True)  [单跑快照,有噪声]
+- capability: 已判 1 / 跳过 3  (跳过: cap-002, cap-003, cap-004)
+  产出:逐次在 outputs/(gitignore、可重生);认可的存 golden/(入库、当可视基线)
+
