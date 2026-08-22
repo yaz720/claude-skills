@@ -47,10 +47,11 @@ rows, consistent spacing. Keep the user's labels and layout; upgrade only the ex
 
 ## Workflow
 
-1. **Design + author a self-contained SVG.** Follow the design conventions below. Critically, the
-   SVG must be *self-contained* — explicit `font-family`, explicit hex colors, and (by default) a
-   white background rect — because it will be rendered outside the chat by `rsvg-convert`, which
-   has none of the chat widget's CSS. See "Self-contained SVG" below.
+1. **Design + author a self-contained SVG.** Read `references/svg-authoring.md` first — it has the
+   exact canvas/type/color spec and a copy-ready skeleton. Critically, the SVG must be
+   *self-contained* — explicit `font-family`, explicit hex colors, and (by default) a white
+   background rect — because it will be rendered outside the chat by `rsvg-convert`, which has
+   none of the chat widget's CSS.
 2. **Preview it inline** by passing the same SVG to `show_widget` (visualize) so the user sees it
    immediately in the conversation. (If that tool isn't available, skip straight to files.)
 3. **Write the SVG to a file** in the output directory (see "Where files go").
@@ -84,51 +85,23 @@ rows, consistent spacing. Keep the user's labels and layout; upgrade only the ex
   than SVG, the "both formats" default relaxes to PNG-only — canvas has no clean SVG export. Say
   so in one line. Prefer an SVG-based approach when the chart is simple enough to keep both.
 
-## Design conventions
+## Design non-negotiables
 
-Keep figures calm and legible — the visual language matches the chat's own design system.
+Full spec — exact numbers, palette, and a copy-ready skeleton — is in
+`references/svg-authoring.md`. **Read it before authoring the SVG.** The rules that must hold in
+every figure, even if you don't open it:
 
-- **Canvas**: `viewBox="0 0 680 H"`, width 680 (matches typical container width; do not change the
-  680). Set `H` to the bottom-most element + ~20px. No negative coordinates.
-- **Flat only**: solid fills, no gradients / shadows / glow / blur.
-- **Sentence case** everywhere — never Title Case, never ALL CAPS, including labels.
-- **Two font sizes**: 14px for box/region labels, 12px for subtitles and arrow labels. Nothing
-  below 11px.
-- **Two weights**: 400 regular, 500 for labels/headings. Never 600/700 (reads heavy).
-- **Color**: at most two color families per figure; use a neutral gray as the baseline and color
-  only to carry meaning. Mid-tone hexes read fine in both light and dark. A small starter set that
-  works well: blue `#4a90d9`, teal `#14b8a6`, gray `#6b6f76`, amber `#d9902a`, red `#d64545`,
-  green `#3fa96a`, purple `#8b5cf6`. White text `#ffffff` on these mid-tones; body text `#333333`.
-- **No overlaps**: check that no two unrelated boxes/labels/arrows collide. In a row, keep a ≥20px
-  gap between boxes. A figure with crossed labels reads as broken no matter how good the content.
-- **Rounded corners** (`rx="8"`) on boxes; **1.5px** strokes for light container outlines.
-
-### Self-contained SVG (required for the saved file)
-
-The saved `.svg` is rendered by `rsvg-convert`, which does **not** inherit any chat CSS. So the SVG
-must stand on its own:
-
-- Put a font stack on the root: `font-family="-apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif"`
-  so CJK text renders (PingFang SC covers Chinese on macOS).
-- Give every `<text>` an explicit `font-size` and `fill` (no reliance on classes).
-- Set explicit `width` and `height` on the root `<svg>` in addition to `viewBox`.
-- Include a white background rect as the first child by default:
-  `<rect x="0" y="0" width="680" height="H" fill="#ffffff"/>` (omit for transparent output).
-- Add `role="img"` with `<title>` and `<desc>` as the first children for accessibility.
-
-A minimal, correct skeleton:
-
-```svg
-<svg width="680" height="200" viewBox="0 0 680 200" role="img"
-     xmlns="http://www.w3.org/2000/svg"
-     font-family="-apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif">
-  <title>…</title>
-  <desc>…</desc>
-  <rect x="0" y="0" width="680" height="200" fill="#ffffff"/>
-  <rect x="40" y="40" width="200" height="44" rx="8" fill="#4a90d9"/>
-  <text x="140" y="67" text-anchor="middle" font-size="14" fill="#ffffff">label</text>
-</svg>
-```
+- **Canvas `viewBox="0 0 680 H"`** — width is always 680; set `H` to the bottom-most element + ~20px.
+- **Flat only** — solid fills, no gradients / shadows / glow / blur.
+- **Sentence case** everywhere — never Title Case, never ALL CAPS.
+- **Two font sizes** (14px labels / 12px subtitles, nothing below 11px), **two weights** (400/500,
+  never 600+).
+- **At most two color families**, gray as the baseline, color only to carry meaning.
+- **No overlaps** — ≥20px between boxes in a row. A figure with crossed labels reads as broken no
+  matter how good the content.
+- **Self-contained** — explicit `font-family` (with a CJK-capable stack), explicit `font-size` and
+  `fill` on every `<text>`, explicit `width`/`height` on the root, and a white background rect by
+  default. `rsvg-convert` inherits none of the chat's CSS, so anything implicit renders wrong.
 
 ## Dependencies
 
