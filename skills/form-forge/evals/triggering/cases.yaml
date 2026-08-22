@@ -1,0 +1,25 @@
+# form-forge 触发测试
+# 正例：该触发。覆盖建卡、配图、记提点、更新强度、反查覆盖、对照表、英文入口
+# 负例：不该触发。重点放"相邻且极易误触"的场景——健身话题不等于要建卡
+
+- { id: trig-001, input: "教练今天教了个新动作，罗马尼亚硬拉，帮我建张动作卡", expect: fire }
+- { id: trig-002, input: "把泡沫轴靠墙滑行做成一张卡，要有肌肉图和动作示范", expect: fire }
+- { id: trig-003, input: "教练说我深蹲膝盖内扣，记一下", expect: fire }
+- { id: trig-004, input: "深蹲加到 70 公斤了，3 组 5 个，更新一下强度", expect: fire }
+- { id: trig-005, input: "我今天做了深蹲、卧推、划船，这套练到了什么肌群，缺什么", expect: fire }
+- { id: trig-006, input: "给动作库建一张肌肉名称对照表，中英对照带高亮图", expect: fire }
+- { id: trig-007, input: "帮我找一张前锯肌的解剖图，要版权干净能放进笔记的", expect: fire }
+- { id: trig-008, input: "build an exercise card for the barbell hip thrust, with muscle diagrams", expect: fire }
+- { id: trig-009, input: "log what my coach said about my overhead press today", expect: fire }
+- { id: trig-010, input: "这个动作做错了都会有哪些代偿，帮我整理进卡里", expect: fire }
+
+# --- 负例：健身相关但不该触发 ---
+- { id: trig-neg-001, input: "帮我制定一个一周三练的增肌计划", expect: no-fire }
+- { id: trig-neg-002, input: "深蹲的时候为什么要收紧核心？", expect: no-fire }
+- { id: trig-neg-003, input: "深蹲一小时大概消耗多少卡路里", expect: no-fire }
+# --- 负例：护栏，本该由别的技能处理 ---
+- { id: trig-neg-004, input: "我肩膀疼了两周了，可能是什么问题，要不要去看医生", expect: no-fire }
+- { id: trig-neg-005, input: "帮我在附近找个做运动康复的理疗师", expect: no-fire }
+- { id: trig-neg-006, input: "把这组季度销售数据画成柱状图，要能下载的 PNG", expect: no-fire }
+- { id: trig-neg-007, input: "肌酸和 HMB 哪个更值得买", expect: no-fire }
+- { id: trig-neg-008, input: "帮我算一下这份鸡胸肉沙拉的蛋白质含量", expect: no-fire }
