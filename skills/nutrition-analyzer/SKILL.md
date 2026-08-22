@@ -275,16 +275,27 @@ FDA 标签只给 15 项法定营养素，而且只说"是多少"，不说"哪来
 
 1. **先生成 HTML**：使用与 JSX artifact 相同的 CSS 样式编写完整 HTML 文件，保证视觉效果一致（圆角、阴影、flex 布局、渐变背景等全部保留）。
 2. **用 Playwright 转 PDF**：调用 Playwright (Chromium) 将 HTML 渲染为 PDF，确保现代 CSS 完整保留。**绝对不要用 reportlab 手动画坐标**，那样做出来的 PDF 排版质量远不如浏览器引擎渲染。
-3. **纸张大小**：使用 **US Letter (8.5 × 11 inches)**，不要用 A4。
-4. **防止表格/标签被分页截断**：所有 `.section` 容器必须设置 `page-break-inside: avoid`，确保任何单个表格、FDA 标签、步骤列表、图表不会横跨两页。报告本身可以有多页，但任何单个表格/标签必须完整在一页内。
-5. **可选原料处理**：PDF 无法像 JSX 那样切换按钮，所以：
+3. **环境里没有 Playwright 时的退路**：先查本机有没有装 Chrome / Chromium / Edge，有就直接用它的 headless 出图，**不要为这一件事去下一个 90 MB 的 Chromium**——Playwright 装的本就是 Chromium，和系统里的 Chrome 同内核、同 Skia 出图管线，产出的 PDF 页数、尺寸、分页位置一致。
+
+   ```bash
+   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+     --headless --disable-gpu --no-pdf-header-footer \
+     --user-data-dir=<临时目录> \
+     --print-to-pdf=<输出.pdf> "file://<绝对路径/report.html>"
+   ```
+
+   ⚠️ **两个坑**：① 这条命令写完 PDF 后 **Chrome 常常不自己退出**，会挂成僵尸进程——务必加超时并在拿到文件后主动 kill，否则会留下一个看起来"卡住"的后台任务；② 走 CLI 时纸张与页边距**只能由 CSS 的 `@page` 控制**（命令行没有对应参数），所以 `@page { size: letter; margin: ...; }` 必须写在样式里，不能像 Playwright 那样靠调用参数兜底。
+
+4. **纸张大小**：使用 **US Letter (8.5 × 11 inches)**，不要用 A4。
+5. **防止表格/标签被分页截断**：所有 `.section` 容器必须设置 `page-break-inside: avoid`，确保任何单个表格、FDA 标签、步骤列表、图表不会横跨两页。报告本身可以有多页，但任何单个表格/标签必须完整在一页内。
+6. **可选原料处理**：PDF 无法像 JSX 那样切换按钮，所以：
    - 明细表中可选原料标灰色 + "可选"标签
    - 表格底部同时列出基础版和含可选原料版的合计及每份数值
    - FDA 标签并排输出两个（基础版 + 含可选原料版）
-6. **双语处理**：PDF 无法切换，直接出中英并排的静态版本（FDA 标签正文仍为英文）。
-7. **视觉主题**：PDF 同样使用 Step 6 的主题 Emoji + 背景色渐变，与 JSX 版本保持视觉一致。
-8. **解读卡片**：在 FDA 标签下方包含 Step 5 的营养亮点卡与糖分构成卡（按 5A / 5B 的规则决定形态）。
-9. **纯文字徽章**：顶部徽章不挂 emoji，且必须同时给出每份与整批热量（见 Step 7 顶部区域）。
+7. **双语处理**：PDF 无法切换，直接出中英并排的静态版本（FDA 标签正文仍为英文）。
+8. **视觉主题**：PDF 同样使用 Step 6 的主题 Emoji + 背景色渐变，与 JSX 版本保持视觉一致。
+9. **解读卡片**：在 FDA 标签下方包含 Step 5 的营养亮点卡与糖分构成卡（按 5A / 5B 的规则决定形态）。
+10. **纯文字徽章**：顶部徽章不挂 emoji，且必须同时给出每份与整批热量（见 Step 7 顶部区域）。
 
 Playwright PDF 生成代码模板：
 ```python
