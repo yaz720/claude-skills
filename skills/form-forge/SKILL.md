@@ -56,7 +56,9 @@ description: >-
 
 ### 建卡
 
-1. 用户报动作名（中英文皆可）→ 确认是哪个版本 / 流派，拿不准就问
+1. 用户报动作名（中英文皆可）→ 确认是哪个版本 / 流派，拿不准就问。
+   若同一动作名下有多种练法，先用 `references/card-spec.md` 的**拆卡判据**判断
+   （主动肌 / 训练性质 / 肌群标签是否改变）：变了就该拆成两张卡，没变就写进变式提醒
 2. 套 `assets/card-template.md`，按 `references/card-spec.md` 的固定顺序写
 3. 配图：先查 `assets/muscles.tsv` 已验证索引，缺的用脚本现搜
    （`references/image-pipeline.md`）
