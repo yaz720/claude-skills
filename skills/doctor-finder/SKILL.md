@@ -48,42 +48,18 @@ description: >-
 
 ### 第二步：从业者类型推荐
 
-#### 2a. 从业者类型和资质知识库
+#### 2a. 从业者类型和资质
 
-**医生（Physician）：**
-- **MD**：传统西医训练，4年医学院 + 住院医
-- **DO**：与MD同等，额外学骨骼肌肉手法治疗，处方权和手术权完全相同
-- **Board Certification** 是判断专业能力的关键指标
-- **Fellowship**：住院医之后的亚专科训练，是最硬的专长凭证
+**各类头衔的含义、各科亚专科细分、认证代码见 `references/provider-credentials.md`**——
+要确认"DO 和 MD 差在哪""OCS 是什么认证""妇产科有哪些亚专科"时查它。
 
-**专科细分举例：**
-- **妇产科（OB/GYN）**：普通OB/GYN｜Maternal-Fetal Medicine（高危妊娠）｜Gynecologic Oncology（妇科肿瘤，复杂手术）｜Reproductive Endocrinology（不孕不育）｜Urogynecology（盆底）
-- **骨科**：Sports Medicine（多为非手术）｜Joint Replacement｜Spine Surgery｜Hand Surgery
-- **内科**：普通内科 vs 心脏/消化/肾脏/内分泌等亚专科
-- **皮肤科**：一般皮肤科｜Mohs surgery（皮肤癌手术）｜Dermatopathology（皮肤病理）｜Pediatric dermatology｜Complex medical dermatology（疑难炎症性皮肤病）
+选型时握住这几条即可：
 
-**中级从业者：**
-- **NP（Nurse Practitioner）**：硕士/博士级护理训练，独立或半独立执业
-- **PA（Physician Assistant）**：硕士级，医生监督下执业
-- 两者都能诊断开药，**更容易预约、等待时间短**，适合常规问题
-- 但疑难病例、需要深入鉴别诊断的情况，MD/DO 训练更有优势
+- **Board Certification 是判断专业能力的关键指标**；**Fellowship（住院医之后的亚专科训练）是最硬的专长凭证**。
+- **MD 与 DO 同等**——处方权和手术权完全相同，DO 额外学骨骼肌肉手法治疗。别把 DO 当次一等。
+- **NP / PA 更容易预约、等待时间短**，适合常规问题；但疑难病例、需要深入鉴别诊断的，MD/DO 训练更有优势。
+- **有资质与无资质要分清**：RD/RDN 是注册营养师（有资质），nutritionist 多数州无资质要求；普拉提教练要看有没有 PMA-CPT 或康复背景。
 
-**治疗师和康复：**
-- **PT / DPT**：Orthopedic｜Neurological｜Pelvic Floor｜Sports｜Pediatric
-  - 认证：OCS（骨科）、SCS（运动）、WCS（女性健康）
-- **OT**：日常生活功能、手部精细动作、认知康复
-- **SLP**：语言/吞咽
-
-**心理健康：**
-- **Psychiatrist（MD/DO）**：能开药
-- **Psychologist（PhD/PsyD）**：测评和治疗，多数州不能开药
-- **LCSW / LPC / LMFT**：持证咨询师
-
-**其他：**
-- **RD/RDN**（注册营养师，有资质）vs **nutritionist**（多数州无资质要求）
-- **DC**（脊椎治疗师）｜**LAc**（针灸师）｜**DPM**（足病医生）
-- **DDS/DMD**（牙科，两者等同）：正畸｜口腔外科｜牙周
-- **Certified Pilates Instructor**：看是否有 PMA-CPT 或康复背景
 
 #### 2b. 给出推荐
 

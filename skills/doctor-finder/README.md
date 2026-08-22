@@ -52,6 +52,7 @@
 | 文件 | 说明 |
 |------|------|
 | `SKILL.md` | 技能主文件:frontmatter(触发描述)+ 七步工作流主干 + 各步红线 + 注意事项 |
+| `references/provider-credentials.md` | 第二步:各类头衔含义、亚专科细分、认证代码的查询资料 |
 | `references/expertise-signals.md` | 第四步:判断真实专长的信号源可靠性排序与用法 |
 | `references/ratings-platforms.md` | 第五步:各平台评分的获取方式、三类评分的解读判据、呈现模板 |
 | `evals/triggering/cases.yaml` | 22 条触发用例(含负例护栏:与 nutrition-analyzer、supp-research、food-research、figure-forge 分界) |
