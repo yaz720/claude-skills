@@ -35,7 +35,7 @@ from pathlib import Path
 # 复用 scaffold 的 evals 模板,保证"移植来的"和"新建的"骨架一模一样
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
-    from scaffold import TRIGGERING_YAML, CAPABILITY_YAML, BAR_YAML
+    from scaffold import TRIGGERING_YAML, CAPABILITY_YAML, BAR_YAML, README_MD
 except Exception:  # 万一 scaffold 不可导入,内联兜底(与 scaffold 保持同义)
     TRIGGERING_YAML = ("# 触发测试:正例该触发(fire)、负例不该触发(no-fire)\n"
                        "- {{ id: trig-001, input: \"TODO 一条该触发的话\", expect: fire }}\n"
@@ -44,6 +44,9 @@ except Exception:  # 万一 scaffold 不可导入,内联兜底(与 scaffold 保�
                        "- id: cap-001\n  input: \"TODO 一个真实任务\"\n  check:\n    - \"TODO 期望产出的一条硬标准\"\n")
     BAR_YAML = ("triggering: {{ pass_rate: 0.9, negatives_must_pass: all }}\n"
                 "capability: {{ judge_pass_rate: 0.8, runs: 3 }}\njudge_model: claude-sonnet-5\n")
+    README_MD = ("# {name}\n\n> **状态:🚧 开发中**(尚未跑过基线;跑通并留档后再转 ✅)\n\n"
+                 "一个 Claude Code **技能**:TODO —— 一句话说清它把什么变成什么。\n\n"
+                 "## 这个技能做什么\n\n- TODO\n\n## 边界\n\nTODO\n")
 
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 IGNORE = shutil.ignore_patterns(".git", ".DS_Store", "__pycache__", "*.pyc", "node_modules")
@@ -184,6 +187,7 @@ def main() -> None:
             actions.append((sub + "/", "源已有 → 保留", "kept"))
 
     stubs = {
+        "README.md": README_MD.format(name=name),
         "evals/triggering/cases.yaml": TRIGGERING_YAML.format(),
         "evals/capability/cases.yaml": CAPABILITY_YAML,
         "evals/bar.yaml": BAR_YAML.format(),

@@ -79,6 +79,20 @@ ln -s ~/Desktop/claude-skills/skills/<name> ~/.claude/skills/<name>
 - **中英文触发词**并列;
 - 起草后**自动核对 ≤ 1024 字符**(打包成 `.skill` 会校验,超了会失败)。
 
+#### 4′. README(别漏,它和 SKILL.md 读者不同)
+`SKILL.md` 是**写给模型**的(已经装了、正要干活);`README.md` 是**写给人**的(还在决定装不装、
+想知道这东西替我做什么)。scaffold / migrate 会生成 README 骨架,**把 TODO 填掉,别留着**——
+`.skill` 包里只有 SKILL.md 和 README,别人下载后看到的第一眼就是它。
+
+- **别把 SKILL.md 抄一遍**:README 讲"为什么值得装、它替你做了模型不会自己做的哪几件事",
+  正文流程细节留在 SKILL.md。
+- **首行必须有【状态徽标】,且如实**:没跑过基线就写 🚧,别默认写成成品。
+  格式:`> **状态:🚧 开发中**(触发基线 X/Y;能力用例 …,补齐后再转 ✅)`——
+  括号里写**当前评测实况**(引 `evals/RESULTS.md` 的最新一跑),改动评测后回来同步这一行。
+  只有触发与能力基线都跑通、且达到 `bar.yaml` 的线,才可以换成 ✅。
+- 结尾统一给**安装与分发**指路(软链激活 / 下载 `dist/<name>.skill` 一键装)。
+- ⚠ README 和技能正文一样是**对外**的:别写私有仓名、内部路径、个人工作流细节(见「边界」)。
+
 ### 5. 预检 Preflight
 ```bash
 bash skills/skill-forge/scripts/preflight.sh <path/to/skill>
@@ -115,7 +129,7 @@ python skills/skill-forge/scripts/eval_run.py <path/to/skill>
 bash skills/skill-forge/scripts/package.sh <path/to/skill> <repo-root>/dist
 ```
 调官方 `package_skill.py` 生成 / 重打 `dist/<name>.skill`。
-**改过 SKILL.md 必重打**;打包会再校验 ≤1024(第二道闸)。
+**改过 SKILL.md 或 README.md 必重打**(两者都在包里);打包会再校验 ≤1024(第二道闸)。
 
 ### 9. 发布 Publish
 - `git commit` 把【源 + `dist/<name>.skill`】一起提交;

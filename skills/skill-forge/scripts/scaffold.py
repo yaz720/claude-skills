@@ -61,6 +61,38 @@ judge_model: claude-sonnet-5   # 缺省 Sonnet;判错才升 claude-opus-5;别用
 """
 
 
+README_MD = """# {name}
+
+> **状态:🚧 开发中**(尚未跑过基线;跑通并留档后再转 ✅)
+
+一个 Claude Code **技能**:TODO —— 一句话说清它把什么变成什么。
+
+TODO —— 差异化价值:模型不装这个技能也能做点什么,但它**不会自己做**的是哪几件事?
+(README 面向"要不要装它"的读者,SKILL.md 面向"已经装了、正要干活"的模型——别把 SKILL.md 抄一遍。)
+
+## 这个技能做什么
+
+- TODO
+- TODO
+
+## 边界
+
+TODO —— 不做什么;相邻技能各管什么。
+
+## 仓库结构
+
+| 文件 | 说明 |
+|------|------|
+| `SKILL.md` | 技能主文件:frontmatter(触发描述)+ 工作流 |
+| `evals/` | 触发用例 + 能力用例 + 分数历史 |
+
+---
+
+> **安装与分发**:本技能随总库一起分发,不是独立仓库。
+> 装法(软链激活 / 下载 `dist/{name}.skill` 一键装)见[总库根 README](../../README.md)。
+"""
+
+
 def die(msg: str) -> None:
     print(f"❌ {msg}", file=sys.stderr)
     sys.exit(1)
@@ -97,6 +129,7 @@ def main() -> None:
     (skill_dir / "evals" / "capability").mkdir(parents=True)
 
     (skill_dir / "SKILL.md").write_text(SKILL_MD.format(name=name), encoding="utf-8")
+    (skill_dir / "README.md").write_text(README_MD.format(name=name), encoding="utf-8")
     (skill_dir / "evals" / "triggering" / "cases.yaml").write_text(TRIGGERING_YAML.format(), encoding="utf-8")
     (skill_dir / "evals" / "capability" / "cases.yaml").write_text(CAPABILITY_YAML, encoding="utf-8")
     (skill_dir / "evals" / "bar.yaml").write_text(BAR_YAML.format(), encoding="utf-8")
@@ -108,6 +141,8 @@ def main() -> None:
     print(f"✅ scaffolded [{scope}] skill: {skill_dir}")
     print("\n下一步:")
     print("  1) 撰写:把正文交给官方 skill-creator;起草 description 记得围绕差异化价值 + 否定例 + <=1024。")
+    print("     同时把 README.md 的 TODO 填掉(面向读者的门面:装不装它、它替你做什么),")
+    print("     并让首行【状态徽标】如实反映评测进度——没跑基线就写 🚧,别默认写成成品。")
     if scope == "global":
         link = f"~/.claude/skills/{name}"
         print(f"  2) 激活(全局):")
