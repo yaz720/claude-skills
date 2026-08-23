@@ -147,7 +147,7 @@ def main() -> None:
     # 定名:--name > frontmatter name > 源文件名
     name = args.name or fm_name or slugify(src.stem if src.is_file() else src.name)
     if not name or not NAME_RE.match(name):
-        die(f"技能名非法或无法确定(需 kebab-case,如 doctor-finder):得到 '{name}'。用 --name 指定。")
+        die(f"技能名非法或无法确定(需 kebab-case,如 care-scout):得到 '{name}'。用 --name 指定。")
 
     # 目标
     if args.project:

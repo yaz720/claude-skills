@@ -1,4 +1,4 @@
-# 找医生 (doctor-finder)
+# 择医 (care-scout)
 
 > **状态:🚧 开发中**(触发基线 21/22,trig-002 一条待修;4 条能力用例已写好、尚未实跑判分,补齐后再转 ✅)
 
@@ -62,4 +62,4 @@
 ---
 
 > **安装与分发**:本技能随 `claude-skills` **总库**一起分发,不是独立仓库。
-> 装法(软链激活 / 下载 `dist/doctor-finder.skill` 一键装)见[总库根 README](../../README.md)。
+> 装法(软链激活 / 下载 `dist/care-scout.skill` 一键装)见[总库根 README](../../README.md)。

@@ -38,7 +38,7 @@
 
 ## 命名与改名
 
-技能名一律 kebab-case:全小写,多个词之间用连字符断开(`doctor-finder`、`figure-forge`)。单个连写词(`figureforge`)虽能过正则但违背约定。
+技能名一律 kebab-case:全小写,多个词之间用连字符断开(`care-scout`、`figure-forge`)。单个连写词(`figureforge`)虽能过正则但违背约定。
 
 **改名牵动多处**——`name` 字段 / 文件夹 / plugin.json / marketplace.json / `.skill` 包 / 软链 / GitHub repo。任何改名前先读 `references/rename-checklist.md`。
 

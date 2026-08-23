@@ -1,7 +1,7 @@
 # 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
 # 覆盖 second-opinion-panel（圆桌会诊）宣称的场景:描述病情/检查结果并想要多角度分析、多方观点、专家辩论、
 # 第二意见、中西医对比,或"看医生前理清思路"。
-# 负例重点是相邻健康技能的护栏 —— 尤其 doctor-finder(找人)与本技能(析病)的分界。
+# 负例重点是相邻健康技能的护栏 —— 尤其 care-scout(找人)与本技能(析病)的分界。
 
 # ---------- 正例:该触发 ----------
 - { id: trig-001, input: "我妈 62 岁,查出甲状腺结节 TI-RADS 4a,医生建议穿刺,想听听多方面的意见", expect: fire }
@@ -20,8 +20,8 @@
 
 # ---------- 负例:不该触发 ----------
 # (a) 相邻健康技能的活
-- { id: trig-neg-001, input: "膝盖疼想找个医生看看,湾区的,接受 PPO", expect: no-fire }                  # → doctor-finder(找人,不是析病)
-- { id: trig-neg-002, input: "脚趾甲发黄变厚,我该看什么科?", expect: no-fire }                          # → doctor-finder(分诊)
+- { id: trig-neg-001, input: "膝盖疼想找个医生看看,湾区的,接受 PPO", expect: no-fire }                  # → care-scout(找人,不是析病)
+- { id: trig-neg-002, input: "脚趾甲发黄变厚,我该看什么科?", expect: no-fire }                          # → care-scout(分诊)
 - { id: trig-neg-003, input: "帮我算算这盘宫保鸡丁大概多少热量", expect: no-fire }                        # → nutrition-analyzer
 - { id: trig-neg-004, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                                 # → supp-research
 - { id: trig-neg-005, input: "帮我画一张这个疾病的诊疗流程图", expect: no-fire }                          # → figure-forge

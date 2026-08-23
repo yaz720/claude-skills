@@ -31,7 +31,7 @@ FDA 标签**正文恒为英文**——"Nutrition Facts"、"% Daily Value"、"Tot
 | 文件 | 说明 |
 |------|------|
 | `SKILL.md` | 技能主文件:frontmatter(触发描述)+ 八步工作流 + 九条关键原则 + 边界情况 |
-| `evals/triggering/cases.yaml` | 26 条触发用例(14 正 / 12 负),负例覆盖 supp-research、food-research、doctor-finder、second-opinion-panel、figure-forge、redact 六条护栏 |
+| `evals/triggering/cases.yaml` | 26 条触发用例(14 正 / 12 负),负例覆盖 supp-research、food-research、care-scout、second-opinion-panel、figure-forge、redact 六条护栏 |
 | `evals/capability/cases.yaml` | 4 条能力用例:完整食谱五段式、单一食材伸缩、照片视觉估算、有料无做法 |
 | `evals/RESULTS.md` | 分数历史(eval_run 自动追加) |
 

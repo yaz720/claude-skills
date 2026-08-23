@@ -1,6 +1,6 @@
 ---
 name: nutrition-analyzer
-description: 把一组食材、一份食谱、一张营养标签照片或一张成品菜照片，变成一份可保存的营养报告——逐原料营养贡献表、可选原料"含/不含"两版对照、糖分构成拆解（果糖/葡萄糖/蔗糖，值得拆时才拆）、FDA 标准 Nutrition Facts 标签，并落盘为 US Letter 尺寸 PDF 真文件，而不只是在对话里报一个热量数字。当用户提到"营养成分"、"热量"、"卡路里"、"nutrition facts"、"calories"、"macros"、"宏量营养素"，或者说"我做了一个XXX，帮我算算营养"、"这道菜有多少热量"、"帮我分析这个食谱"、"这个面包大概多少卡"，或者上传了食品包装营养标签的照片并想汇总计算，或者上传了一张做好的菜/食物的照片想知道大概营养成分时，都应触发此技能。也适用于用户给出一组食材配料表并想知道整体营养的场景。英文触发词：analyze this recipe、how many calories、nutrition facts for、macro breakdown。不要触发：营养补充剂/保健品调研（→supp-research）、食材品牌与产地对比（→food-research）、找营养师或医生（→doctor-finder）、只问营养学知识而不针对某一份具体食物、单纯画图表（→figure-forge）。
+description: 把一组食材、一份食谱、一张营养标签照片或一张成品菜照片，变成一份可保存的营养报告——逐原料营养贡献表、可选原料"含/不含"两版对照、糖分构成拆解（果糖/葡萄糖/蔗糖，值得拆时才拆）、FDA 标准 Nutrition Facts 标签，并落盘为 US Letter 尺寸 PDF 真文件，而不只是在对话里报一个热量数字。当用户提到"营养成分"、"热量"、"卡路里"、"nutrition facts"、"calories"、"macros"、"宏量营养素"，或者说"我做了一个XXX，帮我算算营养"、"这道菜有多少热量"、"帮我分析这个食谱"、"这个面包大概多少卡"，或者上传了食品包装营养标签的照片并想汇总计算，或者上传了一张做好的菜/食物的照片想知道大概营养成分时，都应触发此技能。也适用于用户给出一组食材配料表并想知道整体营养的场景。英文触发词：analyze this recipe、how many calories、nutrition facts for、macro breakdown。不要触发：营养补充剂/保健品调研（→supp-research）、食材品牌与产地对比（→food-research）、找营养师或医生（→care-scout）、只问营养学知识而不针对某一份具体食物、单纯画图表（→figure-forge）。
 ---
 
 # Nutrition Analyzer — 食物营养成分分析技能
