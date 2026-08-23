@@ -171,7 +171,11 @@ bash skills/skill-forge/scripts/harvest.sh <path/to/skill> "<失败输入>" <fir
 **管理**:每技能自带 `evals/`(随技能进 git、可 diff);`bar.yaml` 是达标线;用例尽量**注明出处**(手写 / harvest / 规格变更)。→ 详见 `references/eval-and-tuning.md`。
 
 ## 改名注意
-技能改名牵动多处(name / 文件夹 / plugin.json / marketplace.json / .skill / 软链 / GitHub repo)。
+技能改名牵动两段:**它自己**(name / 文件夹 / plugin.json / marketplace.json / .skill / 软链 /
+GitHub repo),以及**别处对它的引用**——兄弟技能 description 里的护栏指路牌、README 的"不负责"
+清单、评测用例注释。后一段最易漏,且会传导:**改了兄弟技能的 `SKILL.md` / `README.md`,
+它的 `.skill` 包也就旧了,必须一并重打**(只改 `evals/` 则不必,evals 不进包)。
+`.skill` 是 zip,`grep -r` 扫不进去,得解开来验。
 **任何改名前先读 `references/rename-checklist.md`。**
 
 ## 边界(不写进这个可分享技能)
