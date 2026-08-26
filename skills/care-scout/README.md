@@ -45,7 +45,7 @@
 
 **不做医学诊断。** 可以建议看哪一类医生、解释某项检查是干什么的,但会明确说明这不是诊断;紧急情况直接 911 或急诊。没验证过的事(比如某诊所能不能做某项检查)会直说没验证,并给出你可以自己打电话确认的具体问题。搜索查询里不会带上你的个人健康细节。
 
-不负责:纯医学知识科普、解读体检报告、算热量做食谱(→ `nutri-check`)、补剂选购(→ `supp-research`)、食材对比(→ `food-research`)、画图(→ `figure-forge`)。
+不负责:纯医学知识科普、解读体检报告、算热量做食谱(→ `nutri-check`)、补剂选购(→ `supplement-scout`)、食材对比(→ `food-research`)、画图(→ `figure-forge`)。
 
 ## 仓库结构
 
@@ -55,7 +55,7 @@
 | `references/provider-credentials.md` | 第二步:各类头衔含义、亚专科细分、认证代码的查询资料 |
 | `references/expertise-signals.md` | 第四步:判断真实专长的信号源可靠性排序与用法 |
 | `references/ratings-platforms.md` | 第五步:各平台评分的获取方式、三类评分的解读判据、呈现模板 |
-| `evals/triggering/cases.yaml` | 22 条触发用例(含负例护栏:与 nutri-check、supp-research、food-research、figure-forge 分界) |
+| `evals/triggering/cases.yaml` | 22 条触发用例(含负例护栏:与 nutri-check、supplement-scout、food-research、figure-forge 分界) |
 | `evals/capability/cases.yaml` | 4 条能力用例 |
 | `evals/RESULTS.md` | 分数历史(eval_run 自动追加) |
 

@@ -20,7 +20,7 @@
 # ---------- 负例:不该触发 ----------
 # (a) 相邻健康技能的活
 - { id: trig-neg-001, input: "帮我算算这盘宫保鸡丁大概多少热量", expect: no-fire }        # → nutri-check
-- { id: trig-neg-002, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                  # → supp-research
+- { id: trig-neg-002, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                  # → supplement-scout
 - { id: trig-neg-003, input: "草饲牛肉和谷饲牛肉有什么区别?", expect: no-fire }           # → food-research
 - { id: trig-neg-004, input: "帮我画一张就医流程图", expect: no-fire }                    # → figure-forge
 # (b) 纯医学知识问答 / 报告解读 —— 不是"找从业者"

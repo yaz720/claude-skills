@@ -1,6 +1,6 @@
 # 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
 # 覆盖 nutri-check 宣称的四种输入通道(标签照片/文字配料/只给名称/成品菜照片)与"要一份可保存报告"的诉求。
-# 负例重点是相邻技能护栏 —— 尤其 supp-research(补剂)、food-research(食材品牌产地)、
+# 负例重点是相邻技能护栏 —— 尤其 supplement-scout(补剂)、food-research(食材品牌产地)、
 # care-scout(找人)、second-opinion-panel(析病)、figure-forge(画图) 与本技能(算某份具体食物)的分界。
 
 # ---------- 正例:该触发 ----------
@@ -21,7 +21,7 @@
 
 # ---------- 负例:不该触发 ----------
 # (a) 相邻技能的活
-- { id: trig-neg-001, input: "鱼油补充剂哪个牌子好?想了解一下剂型和吸收率", expect: no-fire }           # → supp-research
+- { id: trig-neg-001, input: "鱼油补充剂哪个牌子好?想了解一下剂型和吸收率", expect: no-fire }           # → supplement-scout
 - { id: trig-neg-002, input: "草饲牛肉和谷饲牛肉有什么区别,买哪个好?", expect: no-fire }               # → food-research
 - { id: trig-neg-003, input: "湾区哪里能找到靠谱的注册营养师,接受 PPO 的", expect: no-fire }           # → care-scout
 - { id: trig-neg-004, input: "我查出脂肪肝,几个医生说法不一样,想听听多方观点", expect: no-fire }        # → second-opinion-panel

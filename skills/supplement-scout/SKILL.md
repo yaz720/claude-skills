@@ -1,9 +1,9 @@
 ---
-name: supp-research
+name: supplement-scout
 description: 深度调研美国OTC市场上的营养补充剂（Dietary Supplements）。当用户提到营养补充剂、保健品、维生素、矿物质、鱼油、益生菌、supplement、OTC supplement、营养品调研、补剂对比等话题时触发此技能。也适用于用户想了解某种营养素的剂型、化学形态、吸收率、适用人群、品牌推荐等场景。即使用户只是随口问”XX补充剂哪个好”，也应触发此技能进行系统化调研。
 ---
 
-# SuppResearch — 补剂深调
+# supplement-scout — 补剂选购
 
 ## 概述
 
@@ -645,7 +645,7 @@ description: 深度调研美国OTC市场上的营养补充剂（Dietary Suppleme
 
 生成报告时，直接将 `appendix_certifications.md` 的内容附在参考文献之前即可。具体操作：
 
-1. 读取 `/mnt/skills/user/supp-research/appendix_certifications.md`
+1. 读取 `/mnt/skills/user/supplement-scout/appendix_certifications.md`
 1. 将其内容原样插入报告末尾（参考文献之前）
 1. 不需要修改、重写或重新生成任何内容
 

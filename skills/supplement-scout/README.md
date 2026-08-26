@@ -1,4 +1,4 @@
-# supp-research — 补剂深调技能
+# 补剂选购 (supplement-scout)
 
 > **状态:🚧 开发中**(触发与能力用例已写好,**尚未跑过基线**;跑通并留档后再转 ✅)
 
@@ -26,10 +26,10 @@
 
 ## 使用方式
 
-1. 将本技能打包为 `.skill` 文件后安装,或将 `supp-research/` 目录放入 Claude 的技能目录(`SKILL.md` 与 `appendix_certifications.md` 需位于同一技能文件夹内)。
+1. 将本技能打包为 `.skill` 文件后安装,或将 `supplement-scout/` 目录放入 Claude 的技能目录(`SKILL.md` 与 `appendix_certifications.md` 需位于同一技能文件夹内)。
 2. 在对话中提出补剂相关的调研需求,技能会自动触发并按流程产出报告。
 
-> 打包命令(需 skill-creator 工具):`python -m scripts.package_skill <path/to/supp-research>`
+> 打包命令(需 skill-creator 工具):`python -m scripts.package_skill <path/to/supplement-scout>`
 
 ## 报告输出
 
