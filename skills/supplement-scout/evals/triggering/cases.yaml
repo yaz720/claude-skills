@@ -1,4 +1,42 @@
-# 触发测试:正例该触发(fire)、负例不该触发(no-fire)
-# 负例里务必放几条"本该由别的技能处理"的护栏例。
-- { id: trig-001, input: "TODO 一条该触发的话", expect: fire }
-- { id: trig-neg-001, input: "TODO 一条不该触发的话", expect: no-fire }
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
+# 覆盖 supplement-scout 宣称的场景(某类补剂的系统化调研、剂型/化学形态/吸收率、适用人群、
+# 品牌推荐、随口问"XX 补充剂哪个好"),以及 SKILL.md 里那 7 项强制安全审计所隐含的提问方式
+# (叠加审计与 UL、B6 筛查、草本混合物警戒、辅料评级、第三方认证)。
+# 负例重点是相邻技能护栏 —— nutri-check(算某份具体食物)、food-research(食材品牌产地)、
+# care-scout(找人)、second-opinion-panel(析病)、figure-forge(画图)、redact(脱敏),
+# 外加两条守"不是膳食补充剂"的边界(OTC 药与处方药 —— 那是未来 otc-scout 的活)。
+
+# ---------- 正例:该触发 ----------
+- { id: trig-001, input: "鱼油补充剂哪个牌子好?", expect: fire }                                      # 极短、随口问(description 明确点名这种)
+- { id: trig-002, input: "帮我调研一下美国市场上的维生素D补充剂", expect: fire }                        # 明确要调研
+- { id: trig-003, input: "镁有好几种形态,甘氨酸镁和柠檬酸镁哪个吸收率高?", expect: fire }                # 化学形态 + 吸收率
+- { id: trig-004, input: "益生菌怎么选?菌株和活菌数该看什么", expect: fire }                            # 益生菌
+- { id: trig-005, input: "40 岁女性适合吃什么复合维生素?", expect: fire }                              # 适用人群
+- { id: trig-006, input: "Which omega-3 supplement should I buy? Prefer third-party tested ones.", expect: fire }
+- { id: trig-007, input: "我现在每天吃 5000 IU 维生素 D,再加一款复合维生素会不会超过 UL?", expect: fire }  # 叠加审计(最高优先级能力)
+- { id: trig-008, input: "想找个辅料干净的复合维生素,不要二氧化钛和人工色素那些", expect: fire }          # 辅料评级
+- { id: trig-009, input: "Thorne 和 Pure Encapsulations 的女性复合维生素,哪个配方更好?", expect: fire }  # 同类品牌逐 SKU 对比
+- { id: trig-010, input: "褪黑素哪个牌子靠谱?", expect: fire }                                        # 美国法定属膳食补充剂
+- { id: trig-011, input: "有没有 USP 或 NSF 认证的镁补充剂推荐?", expect: fire }                       # 第三方认证
+- { id: trig-012, input: "补铁吃哪种好?听说有些伤胃", expect: fire }                                   # 矿物质 + 耐受性
+- { id: trig-013, input: "vitamin D3 vs D2 — which form should I actually take?", expect: fire }
+- { id: trig-014, input: "复合维生素里的 B6 含量多少算安全?我打算长期吃", expect: fire }                 # B6 安全筛查
+- { id: trig-015, input: "我在吃中药调理,能同时吃含圣洁莓的女性复合配方吗?", expect: fire }              # 草本混合物警戒
+
+# ---------- 负例:不该触发 ----------
+# (a) 相邻技能的活
+- { id: trig-neg-001, input: "我做了一批桃酥饼干,帮我算算每个多少热量", expect: no-fire }                # → nutri-check(算某份具体食物)
+- { id: trig-neg-002, input: "草饲牛肉和谷饲牛肉有什么区别,买哪个好?", expect: no-fire }                # → food-research(食材)
+- { id: trig-neg-003, input: "湾区哪里能找到靠谱的注册营养师,接受 PPO 的", expect: no-fire }            # → care-scout(找人)
+- { id: trig-neg-004, input: "查出甲状腺结节,医生建议穿刺,想听听多方面的意见", expect: no-fire }         # → second-opinion-panel(析病)
+- { id: trig-neg-005, input: "帮我画一张维生素 D 代谢通路的示意图", expect: no-fire }                   # → figure-forge(画图)
+- { id: trig-neg-006, input: "把这份报告里的人名和医院脱敏掉再存档", expect: no-fire }                   # → redact(脱敏)
+- { id: trig-neg-007, input: "帮我建一张深蹲的训练动作卡", expect: no-fire }                           # → form-forge
+# (b) 不是膳食补充剂 —— 药归药(将来的 otc-scout)
+- { id: trig-neg-008, input: "布洛芬和萘普生哪个止痛效果好?", expect: no-fire }                        # OTC 药,非补充剂
+- { id: trig-neg-009, input: "医生开的降压药能换成别的牌子吗?", expect: no-fire }                      # 处方药
+# (c) 纯知识问答 —— 没有"该买哪个"的选购诉求
+- { id: trig-neg-010, input: "维生素 C 参与胶原蛋白合成的机理是什么?", expect: no-fire }
+- { id: trig-neg-011, input: "什么叫脂溶性维生素,和水溶性有什么区别?", expect: no-fire }
+# (d) 沾"补剂"边但诉求不是调研选购
+- { id: trig-neg-012, input: "我这个月买补剂一共花了多少钱?", expect: no-fire }                        # 记账
