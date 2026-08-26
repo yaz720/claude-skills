@@ -38,3 +38,8 @@
   真正需要盯的是姊妹技能 care-scout:它的 description 里那条护栏指路牌由
   「→nutrition-analyzer」改成了「→nutri-check」,那才是活的改动,同日同样满分(22/22)。
 
+## 2026-08-25 23:28 -0700  (d4e8a35, judge=claude-sonnet-5)
+- triggering: 26/26  (负例全过: True)  [单跑快照,有噪声]
+- capability: 已判 1 / 跳过 3  (跳过: cap-002, cap-003, cap-004)
+  产出:逐次在 outputs/(gitignore、可重生);认可的存 golden/(入库、当可视基线)
+
