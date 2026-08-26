@@ -9,7 +9,7 @@ description: >-
   儿科/妇产/骨科/皮肤/眼/牙、物理治疗师(PT/DPT)、职业治疗师(OT)、脊椎(DC)、精神科/心理咨询、注册营养师(RD)、
   针灸、正畸、NP/PA、有康复背景的普拉提/瑜伽教练等。触发词:找医生、推荐医生、看什么科、该找谁、找PT、找针灸,
   find a doctor / provider, which specialist。不要触发:纯医学知识或用药/手术科普问答、解读体检报告、
-  算热量或做食谱(→nutrition-analyzer)、补剂选购(→supp-research)、食材对比(→food-research)、画图(→figure-forge)。
+  算热量或做食谱(→nutri-check)、补剂选购(→supp-research)、食材对比(→food-research)、画图(→figure-forge)。
 ---
 
 # Doctor & Healthcare Provider Finder

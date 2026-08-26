@@ -1,4 +1,4 @@
-# nutrition-analyzer — 食物营养成分分析技能
+# 营养体检 (nutri-check)
 
 > **状态:🚧 开发中**(触发基线 26/26 通过、负例全过;能力用例 cap-001 按修订后规格实跑 12/12 通过,
 > 另 3 条仍待真实产出,补齐后再转 ✅)
@@ -51,7 +51,7 @@ FDA 标签**正文恒为英文**——"Nutrition Facts"、"% Daily Value"、"Tot
 软链激活:
 
 ```bash
-ln -s ~/Desktop/claude-skills/skills/nutrition-analyzer ~/.claude/skills/nutrition-analyzer
+ln -s ~/Desktop/claude-skills/skills/nutri-check ~/.claude/skills/nutri-check
 ```
 
-或下载 `dist/nutrition-analyzer.skill` 一键装。
+或下载 `dist/nutri-check.skill` 一键装。

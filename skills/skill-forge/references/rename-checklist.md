@@ -83,6 +83,6 @@ ls dist/ | grep "<old>" && echo "❌ 有孤儿包" || echo "✅ 无孤儿包"
 ## 踩过的坑
 
 `doctor-finder` → `care-scout` 那次:文件夹、name、软链、自己的包都对了,**但漏了三个兄弟技能的包**
-(`form-forge` 1 处、`nutrition-analyzer` 2 处、`skill-forge` 7 处仍封着旧名)。
+(`form-forge` 1 处、`nutri-check` 2 处、`skill-forge` 7 处仍封着旧名)。
 原因就是当时的 checklist 只想着"被改名的那个技能",没想到改名会**反向波及**别人,
 而别人的包也因此需要重打。上面自检的第 3 条就是为这个加的。

@@ -22,7 +22,7 @@
 # (a) 相邻健康技能的活
 - { id: trig-neg-001, input: "膝盖疼想找个医生看看,湾区的,接受 PPO", expect: no-fire }                  # → care-scout(找人,不是析病)
 - { id: trig-neg-002, input: "脚趾甲发黄变厚,我该看什么科?", expect: no-fire }                          # → care-scout(分诊)
-- { id: trig-neg-003, input: "帮我算算这盘宫保鸡丁大概多少热量", expect: no-fire }                        # → nutrition-analyzer
+- { id: trig-neg-003, input: "帮我算算这盘宫保鸡丁大概多少热量", expect: no-fire }                        # → nutri-check
 - { id: trig-neg-004, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                                 # → supp-research
 - { id: trig-neg-005, input: "帮我画一张这个疾病的诊疗流程图", expect: no-fire }                          # → figure-forge
 - { id: trig-neg-006, input: "把这份病历里的人名和医院都脱敏掉再存档", expect: no-fire }                    # → redact

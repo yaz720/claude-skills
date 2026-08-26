@@ -1,5 +1,5 @@
 # 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
-# 覆盖 nutrition-analyzer 宣称的四种输入通道(标签照片/文字配料/只给名称/成品菜照片)与"要一份可保存报告"的诉求。
+# 覆盖 nutri-check 宣称的四种输入通道(标签照片/文字配料/只给名称/成品菜照片)与"要一份可保存报告"的诉求。
 # 负例重点是相邻技能护栏 —— 尤其 supp-research(补剂)、food-research(食材品牌产地)、
 # care-scout(找人)、second-opinion-panel(析病)、figure-forge(画图) 与本技能(算某份具体食物)的分界。
 
