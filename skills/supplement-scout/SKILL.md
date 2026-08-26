@@ -3,7 +3,7 @@ name: supplement-scout
 description: 深度调研美国OTC市场上的营养补充剂（Dietary Supplements）。当用户提到营养补充剂、保健品、维生素、矿物质、鱼油、益生菌、supplement、OTC supplement、营养品调研、补剂对比等话题时触发此技能。也适用于用户想了解某种营养素的剂型、化学形态、吸收率、适用人群、品牌推荐等场景。即使用户只是随口问”XX补充剂哪个好”，也应触发此技能进行系统化调研。
 ---
 
-# supplement-scout — 补剂选购
+# supplement-scout — 补剂深调
 
 ## 概述
 

@@ -13,7 +13,7 @@ claude-skills/
    ├─ skill-forge/           # 锻技坊:造技能的技能(造→测→发→回收 闭环)
    ├─ figure-forge/          # 把想法/数据/草图变成可下载的 SVG+PNG 图
    ├─ form-forge/            # 练形坊:把一个动作名变成一张训练动作卡(配图+代偿表+分人记录)
-   ├─ supplement-scout/      # 补剂选购:美国 OTC 营养补充剂系统化调研报告
+   ├─ supplement-scout/      # 补剂深调:美国 OTC 营养补充剂系统化调研报告
    ├─ nutri-check/           # 营养体检:食材/食谱/照片 → FDA 标签 + PDF 报告(开发中 🚧)
    ├─ care-scout/            # 寻医:医疗从业者甄别与择定(开发中 🚧)
    └─ second-opinion-panel/  # 圆桌会诊:三轮结构化辩论 + 中英双语会诊报告
@@ -26,7 +26,7 @@ claude-skills/
 | [skill-forge](skills/skill-forge/) | 锻技坊 | 在官方 skill-creator 之上,补齐脚手架 / 预检 / 评测调优 / git 发布 / 失败回收,把造技能串成闭环 | ✅ |
 | [figure-forge](skills/figure-forge/) | 铸图坊 | 把一个想法、一组数据、或一张草图,变成可下载的 SVG + PNG 图文件(流程图/架构图/对比图/柱状折线饼图等),交付的是真文件而非内联预览 | ✅ |
 | [form-forge](skills/form-forge/) | 练形坊 | 把一个动作名变成一张能长期用的训练动作卡:从维基共享资源取版权干净的解剖图(内置拼法变体/作者黑名单/撞词过滤/42 块已验证图源索引)、自绘动作与发力示意图、按固定规格产出中英双语卡(含五列代偿表:谁在代偿/哪儿有感觉/哪块弱),并负责日常归档教练提点与强度 | ✅ |
-| [supplement-scout](skills/supplement-scout/) | 补剂选购 | 对美国 OTC 市场某一类营养补充剂做系统化深度调研:知识分层 + 聚焦搜索,15–20 个候选经硬门槛淘汰与五维打分,按十章框架产出报告 | ✅ |
+| [supplement-scout](skills/supplement-scout/) | 补剂深调 | 对美国 OTC 市场某一类营养补充剂做系统化深度调研:知识分层 + 聚焦搜索,15–20 个候选经硬门槛淘汰与五维打分,按十章框架产出报告 | ✅ |
 | [nutri-check](skills/nutri-check/) | 营养体检 | 把一组食材/一份食谱/一张营养标签照片/一张成品菜照片,变成可保存的营养报告:逐原料贡献表、可选原料含否两版对照、糖分构成拆解、FDA 标准标签,并落盘为 US Letter PDF 真文件 | 🚧 开发中 |
 | [care-scout](skills/care-scout/) | 寻医 | 从"我有个健康问题"到"找到合适的从业者并预约"的完整流程:类型推荐、真实专长判断、多平台评分解读、负评分析、预约话术 | 🚧 开发中 |
 | [second-opinion-panel](skills/second-opinion-panel/) | 圆桌会诊 | 按病情遴选 4-6 位专家(含立场相反的对抗席),主持三轮结构化辩论——独立陈述→交叉质证→收敛定位分歧,产出中英双语会诊报告;用制度化对抗防止过早收敛 | 🚧 开发中 |
