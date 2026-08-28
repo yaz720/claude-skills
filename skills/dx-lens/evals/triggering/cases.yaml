@@ -1,0 +1,21 @@
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
+# 正例覆盖:化验单解读 / 影像措辞解码 / 偶发瘤焦虑 / 跨期趋势 / 病理术语 / 英文场景。
+# 负例是相邻技能护栏:second-opinion-panel(要治疗意见)、care-scout(找人挂科)、
+# rx-scout(选药)、supplement-scout(补剂),外加基因检测(明确不收)与纯知识问答(手上没报告)。
+# 用例出处:2026-08-27 据设计定案手写(设计讨论:公开技能产出止于脱敏 MD 报告,趋势走无状态多份上传)。
+
+# ---------- 正例:该触发 ----------
+- { id: trig-001, input: "刚拿到年度体检报告,血常规和生化里有五六个项目标了箭头,帮我解读一下,严不严重?", expect: fire }          # 核心:化验单全量解读
+- { id: trig-002, input: "腰椎 MRI 报告里写 cannot exclude disc herniation,还让 clinical correlation,这到底是有还是没有?帮我把整份报告读一遍", expect: fire }  # 影像对冲措辞解码
+- { id: trig-003, input: "体检超声说甲状腺有个 4mm 结节,TI-RADS 3 类,建议随访。这个要紧吗?", expect: fire }                     # 偶发瘤焦虑校准
+- { id: trig-004, input: "这是我近三年的三份血脂化验单,帮我对比一下趋势,LDL 是不是一直在涨?", expect: fire }                     # 跨期趋势(无状态多份)
+- { id: trig-005, input: "胃镜活检的病理报告出来了,写着慢性萎缩性胃炎伴肠上皮化生,每个词帮我解释一下是什么意思", expect: fire }      # 病理术语(硬红线场景)
+- { id: trig-006, input: "can you interpret my lab results? ferritin 15, TSH 4.8 — my doctor said it's fine but the numbers look off to me", expect: fire }  # 英文 + 贴线值/最优区间
+
+# ---------- 负例:不该触发 ----------
+- { id: trig-neg-001, input: "我爸 CT 查出 8mm 肺结节,医生说随访或手术都行,到底该不该切?帮我分析分析各方观点", expect: no-fire }   # → second-opinion-panel(要治疗决策,虽含检查结果)
+- { id: trig-neg-002, input: "体检发现转氨酶偏高,我该挂什么科?顺便帮我找个靠谱的肝病医生", expect: no-fire }                      # → care-scout(找人挂科,虽含异常指标)
+- { id: trig-neg-003, input: "化验单 LDL 4.9,医生说要开始吃他汀了,他汀那么多种到底选哪个?", expect: no-fire }                    # → rx-scout(选药,虽含化验值)
+- { id: trig-neg-004, input: "体检说我维生素D偏低,买哪种维D补充剂比较好?", expect: no-fire }                                    # → supplement-scout(补剂选购,虽由报告引出)
+- { id: trig-neg-005, input: "我的 23andMe 报告说我带一个 APOE4,帮我解读一下这意味着什么", expect: no-fire }                     # 基因检测,明确不在范围
+- { id: trig-neg-006, input: "TSH 是什么激素?它偏高或偏低分别说明什么问题?", expect: no-fire }                                  # 纯知识问答,手上没有具体报告
