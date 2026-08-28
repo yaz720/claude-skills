@@ -31,3 +31,9 @@
 - { id: trig-neg-008, input: "成年人空腹血糖的正常范围是多少?", expect: no-fire }
 - { id: trig-neg-009, input: "科普一下膝关节置换手术大概怎么做", expect: no-fire }
 - { id: trig-neg-010, input: "帮我预约周四下午的复诊并写封邮件给诊所", expect: no-fire }                    # 事务性,非会诊
+
+# (c) lab-reader 护栏 —— 纯解读报告、完全没问怎么办 → lab-reader
+# 出处:2026-08-27 lab-reader 入族时 harvest。当时给 description 加分流句,第一版措辞过宽,
+# 把 trig-007(解读+怎么办)从 14/15 触发打到 0/10;改为"问到怎么办仍触发/纯解读才让"后
+# trig-007 回到 10/10,本负例 0/10。收进来防回归。
+- { id: trig-neg-011, input: "帮我解读一下这份体检报告,这些标了箭头的指标都是什么意思、严不严重?", expect: no-fire }   # → lab-reader(纯解读)
