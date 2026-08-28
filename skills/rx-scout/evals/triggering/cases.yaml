@@ -1,0 +1,21 @@
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
+# 正例覆盖四个进入场景(类内选药/病症选类/方案对比/用药调整)+ 中英文 + OTC 与处方药。
+# 负例是相邻技能护栏:second-opinion-panel(该不该治)、supplement-scout(补剂,含补剂×药安全)、
+# care-scout(找人)、figure-forge(画图),外加纯知识问答(不需要选药决策)。
+# 用例出处:2026-08-25 据设计定案手写,母版案例为他汀选药对话。
+
+# ---------- 正例:该触发 ----------
+- { id: trig-001, input: "七种他汀到底选哪种?我 55 岁,最怕肝损伤", expect: fire }                       # 场景二:类内选药(核心)
+- { id: trig-002, input: "我要开始吃降压药了,医生让我先自己了解一下。降压药都有哪几类,我该吃哪类?", expect: fire }  # 场景一:病症选类
+- { id: trig-003, input: "医生说奥美拉唑或者泮托拉唑都行,让我自己定,帮我比较一下这两个", expect: fire }      # 场景三:方案对比
+- { id: trig-004, input: "我在吃阿托伐他汀 40mg,想评估一下能不能减量,或者换个副作用小点的", expect: fire }    # 场景四:用药调整
+- { id: trig-005, input: "which antihistamine is best for daily use, zyrtec vs claritin vs allegra?", expect: fire }  # 英文 + OTC
+- { id: trig-006, input: "布洛芬和对乙酰氨基酚哪个适合我?我胃不太好", expect: fire }                        # OTC 近身场景
+
+# ---------- 负例:不该触发 ----------
+- { id: trig-neg-001, input: "我妈这情况到底该不该做支架?帮我分析分析各方观点", expect: no-fire }            # → second-opinion-panel(该不该治)
+- { id: trig-neg-002, input: "鱼油补充剂哪个牌子好?", expect: no-fire }                                  # → supplement-scout(补剂选购)
+- { id: trig-neg-003, input: "辅酶Q10 跟他汀一起吃有没有冲突?", expect: no-fire }                         # → supplement-scout(补剂×药安全审计)
+- { id: trig-neg-004, input: "头疼好几天了,该看什么科?帮我找个医生", expect: no-fire }                     # → care-scout(找人)
+- { id: trig-neg-005, input: "CYP3A4 是什么?为什么吃药不能喝西柚汁?", expect: no-fire }                   # 纯知识问答,无选药决策
+- { id: trig-neg-006, input: "帮我画一张他汀作用机制的示意图", expect: no-fire }                           # → figure-forge(画图)
