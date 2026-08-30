@@ -62,7 +62,8 @@
 
 **资质怎么查**
 - 跨州:**FMCSA 的 USDOT number**(官网 safer.fmcsa.dot.gov 免费查投诉与保险状态)。
-- 州内(加州):**CPUC 的 MTR permit(Cal-T number)**;无 permit 的"两个人一辆卡车"出损坏无保险兜底。
+- 州内(加州):**Cal-T permit**——2018 年起主管机构由 CPUC 移交 **BHGS**(Bureau of Household
+  Goods and Services,bhgs.dca.ca.gov 可查);无 permit 的"两个人一辆卡车"出损坏无保险兜底。
 - BBB 投诉记录在搬家行业**权重最高**(纠纷高发行业,处理投诉的态度最能看出底色)。
 
 **定价套路(行业重灾区)**
