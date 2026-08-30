@@ -10,7 +10,7 @@ description: >-
   针灸、正畸、NP/PA、有康复背景的普拉提/瑜伽教练等。触发词:找医生、推荐医生、看什么科、该找谁、找PT、找针灸,
   find a doctor / provider, which specialist。不要触发:纯医学知识或用药/手术科普问答、解读体检报告(→lab-reader)、
   算热量或做食谱(→nutri-check)、补剂选购(→supplement-scout)、食材对比(→food-research)、画图(→figure-forge)、
-  找非医疗类服务商如驾校/家教/搬家/修车(→service-scout)。
+  找非医疗类服务商如驾校/家教/搬家/修车(→service-scout)、找兽医(对象是动物,也→service-scout)。
 ---
 
 # Doctor & Healthcare Provider Finder

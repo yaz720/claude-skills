@@ -125,6 +125,7 @@
 | 理发/美容 | 州 cosmetology license(店内挂牌) | 指名 stylist 加价未提前说 | 具体发型师名字口碑 |
 | 摄影师 | 无执照要求;看作品集一致性 | 定金不退、成片拖交 | "delivery" / "on time" / 修图风格 |
 | 宠物美容/寄养 | 寄养部分州要许可;问应急兽医预案 | 加项收费(去毛结/洗牙) | "injured" / "cut" / 对紧张宠物的处理 |
+| 兽医 | 州兽医执照(加州 Veterinary Medical Board 可查处分);医院看 AAHA 认证(自愿制,含金量高);急诊看是否 24h 或转哪家 | 检查项目连环加(过度诊疗是高频投诉);报价不逐项列 | "unnecessary" / "overcharged" / 急诊响应 / 对动物是否温和;注:没有人医的保险 in-network 体系,宠物保险是事后报销制,别照搬 care-scout 思路 |
 | 报税代理 | **IRS PTIN 必须有**;EA/CPA 更优(IRS 官网可查 EA,州会计局查 CPA) | 按退税额抽成(红旗,IRS 明令反对) | "audit" / "amended" / 响应速度 |
 
 ## 通用红旗(全行业)

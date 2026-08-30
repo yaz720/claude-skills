@@ -18,3 +18,8 @@
    另:cap-002 实跑发现行业小抄事实错误——加州搬家 Cal-T 主管机构 2018 年已由 CPUC 移交 BHGS,
    已修正 references/industry-playbooks.md 与该用例 check 措辞,属修正靶子事实错误,非调优改靶。)
 
+## 2026-08-30 08:53 -0700  (3ce0fc6, judge=claude-sonnet-5)
+- triggering: 24/24  (负例全过: True)  [单跑快照,有噪声]
+- capability: 已判 4 / 跳过 0
+  产出:逐次在 outputs/(gitignore、可重生);认可的存 golden/(入库、当可视基线)
+

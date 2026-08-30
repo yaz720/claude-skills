@@ -29,3 +29,6 @@
 - { id: trig-neg-007, input: "布洛芬和对乙酰氨基酚能一起吃吗?", expect: no-fire }          # 用药信息问答
 - { id: trig-neg-008, input: "科普一下膝关节置换手术大概怎么做、有哪些风险", expect: no-fire }  # 手术科普,非找医生
 - { id: trig-neg-009, input: "what's a normal fasting blood glucose range for an adult?", expect: no-fire }  # 医学常识问答
+# (c) 边界加固(2026-08-30,与 service-scout 划界:对象是动物/非医疗服务归那边)
+- { id: trig-neg-010, input: "猫这两天老是吐,帮我找家靠谱的兽医诊所", expect: no-fire }           # → service-scout(对象是动物)
+- { id: trig-neg-011, input: "帮我找个中文驾校教练,快考路考了", expect: no-fire }                # → service-scout

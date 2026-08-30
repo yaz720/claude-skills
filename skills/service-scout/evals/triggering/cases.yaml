@@ -17,6 +17,8 @@
 - { id: trig-011, input: "全家福想找个摄影师拍,预算 500 以内,湾区", expect: fire }
 - { id: trig-012, input: "下周出差一周,想找个靠谱的猫寄养,怎么挑?", expect: fire }
 - { id: trig-013, input: "这家驾校 Google 4.8 但 Yelp 才 3.2,到底靠不靠谱?", expect: fire }   # 评价交叉解读也是本技能的活
+# 边界加固(2026-08-30,规格明确:兽医对象是动物归本技能)
+- { id: trig-014, input: "猫这两天老是吐,帮我找家靠谱的兽医诊所,最好周末也开门", expect: fire }  # 兽医归本技能,非 care-scout
 
 # ---------- 负例:不该触发 ----------
 # (a) 相邻技能的活
@@ -31,3 +33,5 @@
 - { id: trig-neg-008, input: "长途搬家怎么打包行李比较省事?", expect: no-fire }                  # 打包知识
 # (c) 一次性消费推荐
 - { id: trig-neg-009, input: "周末想带爸妈吃粤菜,Milpitas 附近有什么好餐厅?", expect: no-fire }  # 餐厅推荐不在范围
+# (d) 边界加固(2026-08-30):对象是人的健康,归 care-scout
+- { id: trig-neg-010, input: "生完孩子腹直肌分离,想找个有产后康复背景的私教帮我修复", expect: no-fire }  # → care-scout(康复背景教练)
