@@ -1,0 +1,28 @@
+# 能力测试:触发后活干得好不好。check 由 LLM 裁判逐条判(可含硬检查)。
+# 注:这些用例会真实跑搜索工具,属"在开发中"的初始集,后续用 harvest.sh 把翻车案例并进来。
+# 出处:建库手写(2026-08-29);cap-001 对应本技能首个真实需求(找驾校)。
+
+- id: cap-001
+  input: "我在湾区 San Mateo 附近,想找中文驾校学车。成人零基础,自动挡,比较在意价格。帮我甄别几家。"
+  check:
+    - "行业情报先行:核验/提及驾校的 DMV 执照与教练执照、教练车副刹(dual brake),并点出按小时卖包的拖课时套路"
+    - "Google 与 Yelp 评分并列呈现、不混着平均;分差大时给出解释;中英文关键词都搜过(中文驾校常只在中文关键词下露出)"
+    - "负面评价单独归类分析(收费/爽约/态度/结果/售后),区分偶发 vs 模式、针对某教练 vs 针对机构;有具体教练名字口碑时提取出来并建议指名预约"
+    - "给出中英双语询价话术,必问项覆盖:指定教练、课时是否含接送、路考陪考费用、改期政策"
+    - "推荐 3-5 家按匹配度排序,含地址电话与匹配度说明"
+
+- id: cap-002
+  input: "月底从 Sunnyvale 搬到 Fremont,两室一厅,帮我找靠谱的搬家公司,听说这行坑多,别让我踩低报价高收费的坑。"
+  check:
+    - "核验州内搬家执照(加州 CPUC 的 Cal-T permit;跨州则 USDOT),并说明用户可自行查证的入口"
+    - "点出 binding estimate(书面绑定报价)与 hostage load(装车后坐地起价)风险,给出防法:看货后书面报价、口头报价不算数"
+    - "负面评价按主题归类,重点搜报价与实收差异(final price/quoted)与损坏赔偿(damage/claim)口碑"
+    - "建议至少 2-3 家比价,给出必问清单(几人几车、计时起点、材料费/楼梯费是否含、保险是 full value 还是按重量赔)"
+
+- id: cap-003
+  input: "My check engine light is on and the dealer quoted $1800 for the repair. Help me find a trustworthy independent mechanic near Santa Clara for a second opinion."
+  check:
+    - "Checks shop registration (California BAR) and technician certification (ASE); mentions how the user can verify"
+    - "Warns about the small-problem-big-repair upsell pattern; advises getting the trouble code and a written itemized quote, and asks about diagnostic fee & whether it's credited toward repair"
+    - "Searches reviews for upsell/comeback patterns ('didn't need', 'came back', 'same problem') and presents negative-review analysis separately from positives"
+    - "Presents Google and Yelp ratings side by side without averaging; recommends 2-3 shops ranked by fit"

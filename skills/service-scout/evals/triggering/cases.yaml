@@ -1,0 +1,33 @@
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
+# 覆盖 description 宣称的行业面(驾校/教学/搬家/修车/装修/保洁/摄影/宠物/报税)
+# 及"解读某家店评价"的隐含场景。负例放相邻技能护栏(care-scout/product-research)
+# + 纯知识问答 + 餐厅推荐。出处:建库手写(2026-08-29)。
+
+# ---------- 正例:该触发(要找某类本地服务商/服务者)----------
+- { id: trig-001, input: "我想在湾区找个中文驾校学车,帮我看看哪家好", expect: fire }
+- { id: trig-002, input: "looking for a driving school near San Jose for my 16 year old, which ones are actually good?", expect: fire }
+- { id: trig-003, input: "我下个月要考驾照了,还没摸过车,想找人教我开车", expect: fire }      # 未明说"驾校",暗示找教练
+- { id: trig-004, input: "娃六年级数学跟不上,想找个一对一家教,最好能线下上门", expect: fire }
+- { id: trig-005, input: "帮我找个教成人零基础的钢琴老师,San Mateo 附近", expect: fire }
+- { id: trig-006, input: "月底从 Sunnyvale 搬到 Fremont,两室一厅,推荐几家靠谱搬家公司", expect: fire }
+- { id: trig-007, input: "车的 check engine 灯亮了,dealer 报价太贵,帮我找家靠谱的修车行", expect: fire }
+- { id: trig-008, input: "厨房想重新装修,怎么找靠谱的 contractor?我在 Cupertino", expect: fire }
+- { id: trig-009, input: "want to find a house cleaning service that's bonded and insured near Bellevue", expect: fire }
+- { id: trig-010, input: "找个会中文的报税会计,我有 RSU 和一套出租房", expect: fire }
+- { id: trig-011, input: "全家福想找个摄影师拍,预算 500 以内,湾区", expect: fire }
+- { id: trig-012, input: "下周出差一周,想找个靠谱的猫寄养,怎么挑?", expect: fire }
+- { id: trig-013, input: "这家驾校 Google 4.8 但 Yelp 才 3.2,到底靠不靠谱?", expect: fire }   # 评价交叉解读也是本技能的活
+
+# ---------- 负例:不该触发 ----------
+# (a) 相邻技能的活
+- { id: trig-neg-001, input: "想找个有康复背景的普拉提教练帮我练核心", expect: no-fire }        # → care-scout(医疗侧教练)
+- { id: trig-neg-002, input: "帮我找个会中文的牙医,要接受我的 PPO", expect: no-fire }           # → care-scout
+- { id: trig-neg-003, input: "扫地机器人哪个牌子好?值不值得买 Roomba?", expect: no-fire }       # → product-research(买商品)
+- { id: trig-neg-004, input: "帮我画一张找装修队避坑的流程图", expect: no-fire }                 # → figure-forge
+# (b) 纯知识/操作问答 —— 不是"找服务商"
+- { id: trig-neg-005, input: "侧方停车有什么技巧?老是压线", expect: no-fire }                   # 驾驶知识
+- { id: trig-neg-006, input: "加州考驾照笔试都考什么内容,在哪预约?", expect: no-fire }           # DMV 流程知识,近似但非找商家
+- { id: trig-neg-007, input: "怎么自己在家给车换机油?需要什么工具?", expect: no-fire }           # DIY 教程
+- { id: trig-neg-008, input: "长途搬家怎么打包行李比较省事?", expect: no-fire }                  # 打包知识
+# (c) 一次性消费推荐
+- { id: trig-neg-009, input: "周末想带爸妈吃粤菜,Milpitas 附近有什么好餐厅?", expect: no-fire }  # 餐厅推荐不在范围

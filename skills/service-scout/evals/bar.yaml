@@ -1,0 +1,4 @@
+# 本技能自己的达标线(不搞全局统一线)
+triggering: { pass_rate: 0.9, negatives_must_pass: all }
+capability: { judge_pass_rate: 0.8, runs: 3 }
+judge_model: claude-sonnet-5   # 缺省 Sonnet;判错才升 claude-opus-5;别用 Haiku 当裁判
