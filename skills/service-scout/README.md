@@ -1,4 +1,4 @@
-# service-scout(寻商)
+# service-scout(找服务)
 
 > **状态:✅ 可用**(触发基线 22/22 一把过、负例全过;能力基线 4 用例 19/19 条 check 全过,
 > 含 harvest 自真实首跑的 cap-004,产出经用户认可提为 golden)
