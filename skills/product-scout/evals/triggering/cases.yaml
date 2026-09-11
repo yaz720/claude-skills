@@ -1,0 +1,15 @@
+# 触发测试:正例该触发(fire)、负例不该触发(no-fire)
+# 出处:2026-09-10 建技能时手写;cap 场景源自洗发水调研实战会话
+- { id: trig-001, input: "帮我调研一下洗发水,想要温和的、不会掉头发那种", expect: fire }
+- { id: trig-002, input: "我要买个站立式工作桌,哪个牌子好?", expect: fire }
+- { id: trig-003, input: "宝宝的奶瓶怎么挑?材质安全有什么讲究", expect: fire }
+- { id: trig-004, input: "which robot vacuum is actually worth buying?", expect: fire }
+- { id: trig-005, input: "家里有猫,帮我挑个空气净化器", expect: fire }
+- { id: trig-006, input: "牙膏含氟不含氟怎么选,给我推荐一个", expect: fire }
+# 护栏负例:相邻技能的地盘
+- { id: trig-neg-001, input: "草饲牛肉和谷饲有什么区别,买哪种好", expect: no-fire }   # →food-research
+- { id: trig-neg-002, input: "鱼油补充剂哪个牌子好", expect: no-fire }                 # →supplement-scout
+- { id: trig-neg-003, input: "推荐个靠谱的搬家公司", expect: no-fire }                 # →service-scout
+- { id: trig-neg-004, input: "他汀类药物应该选哪一种", expect: no-fire }               # →rx-scout
+- { id: trig-neg-005, input: "SLS 和 SLES 有什么区别?", expect: no-fire }             # 纯知识问答,无选购决策
+- { id: trig-neg-006, input: "附近有什么好吃的川菜馆推荐", expect: no-fire }           # 一次性消费推荐
