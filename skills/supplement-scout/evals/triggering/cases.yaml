@@ -1,6 +1,6 @@
 # 触发测试:正例该触发(fire)、负例不该触发(no-fire)。
 # 覆盖 supplement-scout 宣称的场景(某类补剂的系统化调研、剂型/化学形态/吸收率、适用人群、
-# 品牌推荐、随口问"XX 补充剂哪个好"),以及 SKILL.md 里那 7 项强制安全审计所隐含的提问方式
+# 品牌推荐、随口问"XX 补充剂哪个好"),以及 SKILL.md 里五步安全分析所隐含的提问方式
 # (叠加审计与 UL、B6 筛查、草本混合物警戒、辅料评级、第三方认证)。
 # 负例重点是相邻技能护栏 —— nutri-check(算某份具体食物)、food-research(食材品牌产地)、
 # care-scout(找人)、second-opinion-panel(析病)、figure-forge(画图)、redact(脱敏),
